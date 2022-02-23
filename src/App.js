@@ -3,22 +3,31 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [hello, setHello] = useState("hello");
+  const [users, setUsers] = useState([]);
+  const [isDownload, setIsDownload] = useState(false);
 
-  const data = async () => {
-    const text = await axios.get("https://dpu-backend.herokuapp.com/");
-    const a = await text.data;
-    setHello(a);
+  const fetchData = async () => {
+    await axios
+      .get("https://dpu-backend.herokuapp.com/users")
+      .then((users) => setUsers(users.data))
+      .finally(setIsDownload(true));
   };
 
   useEffect(() => {
-    data();
+    fetchData();
   }, []);
 
   return (
     <div className="App">
       <h2>Mert Yigittop</h2>
-      <h4>{hello}</h4>
+      <hr />
+      <ul>
+        {isDownload ? (
+          users.map((user, index) => <li key={index}>{user.email}</li>)
+        ) : (
+          <li>Loading..</li>
+        )}
+      </ul>
     </div>
   );
 }
