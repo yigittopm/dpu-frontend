@@ -8,7 +8,7 @@ function App() {
 
   const fetchData = async () => {
     await axios
-      .get("https://dpu-backend.herokuapp.com/users")
+      .get("https://dpu-backend.herokuapp.com/api/v1/auth/all")
       .then((users) => setUsers(users.data))
       .finally(setIsDownload(true));
   };
@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-
+  console.log(users);
   return (
     <div className="App">
       <h2>Mert Yigittop</h2>
