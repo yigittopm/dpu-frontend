@@ -5,12 +5,11 @@ function TopBar() {
   const isAuth = false;
   const isAdmin = true;
   const { pathname } = useLocation();
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-2 text-light">
       <div className="container-fluid">
         {/** Left Toggle */}
-        {/* <div className="">
+        <div className="">
           <button
             className="dropdown-toggle btn btn-dark text-light"
             type="button"
@@ -37,7 +36,7 @@ function TopBar() {
               </a>
             </li>
           </ul>
-        </div> */}
+        </div>
 
         {/** Left Bar */}
         <div className="collapse navbar-collapse">
