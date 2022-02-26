@@ -59,17 +59,17 @@ function TopBar() {
             ) : (
               <>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/">
                     Dashboard
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/">
                     Team
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/">
                     Projects
                   </a>
                 </li>
@@ -82,7 +82,7 @@ function TopBar() {
         <div className="d-flex align-items-center">
           {isAuth ? (
             <>
-              <a className="text-reset me-3" href="#">
+              <a className="text-reset me-3" href="/">
                 <i className="fas fa-shopping-cart"></i>
                 <span className="badge rounded-pill badge-notification bg-danger">
                   3
@@ -104,17 +104,17 @@ function TopBar() {
                   aria-labelledby="navbarDropdownMenuAvatar"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/">
                       My profile
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/">
                       Settings
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/">
                       Logout
                     </a>
                   </li>
