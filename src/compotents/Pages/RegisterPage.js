@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -82,7 +82,7 @@ function RegisterPage() {
               )}
             </div>
 
-            <div className="form-group form-outline mb-1">
+            <div className="form-group form-outline mb-3">
               <label className="form-label" id="password">
                 Password
               </label>
@@ -101,13 +101,15 @@ function RegisterPage() {
                 <small className="text-danger">{errors.password}</small>
               )}
             </div>
-
+            <small>
+              Already have an account ? <Link to="/login">Login</Link>
+            </small>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn btn-primary form-control mt-3"
+              className="btn btn-warning form-control mt-3"
             >
-              Submit
+              Register
             </button>
           </form>
         )}
