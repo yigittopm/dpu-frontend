@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import pp from "../assets/avatars/2-small.png";
 function TopBar() {
-  const isAuth = true;
-  const isAdmin = false;
+  const { isAdmin, isAuth } = useSelector((state) => state.auth);
   const { pathname } = useLocation();
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-2 text-light">
       <div className="container-fluid justify-content-between">
@@ -52,7 +52,7 @@ function TopBar() {
         {/* * Search Bar */}
         <div className="input-group w-50">
           <input
-            className="form-control-sm w-75 d-none d-md-block"
+            className="form-control-sm w-75 d-none d-sm-block"
             placeholder="Search in All Categories"
           />
           <div className="input-group-append">
@@ -60,14 +60,14 @@ function TopBar() {
               className="btn btn-outline bg-warning text-dark btn-sm d-none d-md-block"
               type="button"
             >
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
         </div>
 
         {/** Rigth Bar */}
         <div className="d-flex align-items-center">
-          {isAuth ? (
+          {false ? (
             <>
               {isAdmin && (
                 <>
@@ -103,23 +103,34 @@ function TopBar() {
               </div>
             </>
           ) : (
-            <ul className="navbar-nav mr-0 mb-lg-0">
-              {pathname === "/register" && (
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    Login
-                  </Link>
-                </li>
-              )}
-
-              {pathname === "/login" && (
-                <li className="nav-item">
-                  <Link className="nav-link" to="/register">
-                    Register
-                  </Link>
-                </li>
-              )}
-            </ul>
+            <div className="d-none d-lg-block">
+              <ul className="navbar-nav mr-0 mb-lg-0 ">
+                {!isAuth && (
+                  <>
+                    <li className="nav-item">
+                      <Link
+                        className={`nav-link ${
+                          pathname === "/login" && "active"
+                        }`}
+                        to="/login"
+                      >
+                        Login
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link
+                        className={`nav-link ${
+                          pathname === "/register" && "active"
+                        }`}
+                        to="/register"
+                      >
+                        Register
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </div>
           )}
         </div>
       </div>

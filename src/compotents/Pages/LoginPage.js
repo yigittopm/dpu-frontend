@@ -2,8 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
+
+import { login } from "../../redux/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function LoginPage() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth);
+  console.log(user);
   const validateForm = Yup.object().shape({
     email: Yup.string()
       .min(12, "Min 12")
@@ -21,8 +28,9 @@ function LoginPage() {
           password: "",
         }}
         validationSchema={validateForm}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={async (values) => {
+          await dispatch(login(values));
+          toast.success("Success");
         }}
       >
         {({

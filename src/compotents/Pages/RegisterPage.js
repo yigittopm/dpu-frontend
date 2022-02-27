@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+import { register } from "../../redux/auth/authSlice";
+import { useDispatch } from "react-redux";
+
 function RegisterPage() {
+  const dispatch = useDispatch();
+
   const validateForm = Yup.object().shape({
     username: Yup.string().min(4, "Min 4").max(32, "Max 32").required(),
     email: Yup.string()
@@ -24,7 +29,7 @@ function RegisterPage() {
         }}
         validationSchema={validateForm}
         onSubmit={(values) => {
-          console.log(values);
+          dispatch(register(values));
         }}
       >
         {({
