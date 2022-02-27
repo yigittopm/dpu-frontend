@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
 import pp from "../assets/avatars/2-small.png";
 function TopBar() {
   const { isAdmin, isAuth } = useSelector((state) => state.auth);

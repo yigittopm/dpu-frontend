@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
 function ProtectedPages({ component: Component, ...rest }) {
