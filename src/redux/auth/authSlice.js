@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../../base";
 
-const DEV_BASE = `${BASE_URL}/auth/register`;
-//const DEV_BASE = `${DEV_BASE_URL}/auth`;
+const DEV_BASE = `${BASE_URL}/auth`;
 
 export const AuthSlice = createSlice({
   name: "auth",

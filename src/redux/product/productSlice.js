@@ -3,7 +3,6 @@ import axios from "axios";
 import { BASE_URL } from "../../base";
 
 const DEV_BASE = `${BASE_URL}/products`;
-//const DEV_BASE = `${DEV_BASE_URL}/products`;
 
 export const ProductSlice = createSlice({
   name: "product",
