@@ -1,16 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 
 import { login } from "../../redux/auth/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { AuthLocalStorage } from "../../LocalStorage";
+import { toast } from "react-toastify";
 
 function LoginPage() {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth);
-  console.log(user);
+  const userData = AuthLocalStorage();
+
   const validateForm = Yup.object().shape({
     email: Yup.string()
       .min(12, "Min 12")
@@ -18,6 +21,15 @@ function LoginPage() {
       .email("Invalid email")
       .required(),
     password: Yup.string().min(6, "Min 6").max(512, "Max 512").required(),
+  });
+
+  useEffect(() => {
+    if (userData.success) {
+      toast.success("Login success!");
+      setTimeout(() => {
+        history.push("/profile/edit");
+      });
+    }
   });
 
   return (
@@ -30,7 +42,15 @@ function LoginPage() {
         validationSchema={validateForm}
         onSubmit={async (values) => {
           await dispatch(login(values));
-          toast.success("Success");
+          // const result = data;
+          // if (result) {
+          //   toast.success("Success");
+          //   setTimeout(() => {
+          //     history.push("/profile");
+          //   }, 2000);
+          // } else {
+          //   toast.warning("Login failed");
+          // }
         }}
       >
         {({

@@ -1,10 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/auth/authSlice";
 import { Link, useLocation } from "react-router-dom";
-import pp from "../assets/avatars/2-small.png";
+import pp from "../../assets/avatars/2-small.png";
+import { AuthLocalStorage } from "../../LocalStorage";
+
 function TopBar() {
-  const { isAdmin, isAuth } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const { isAuth, isAdmin, refreshToken } = AuthLocalStorage();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-2 text-light">
       <div className="container-fluid justify-content-between">
@@ -66,7 +71,7 @@ function TopBar() {
 
         {/** Rigth Bar */}
         <div className="d-flex align-items-center">
-          {false ? (
+          {isAuth ? (
             <>
               {isAdmin && (
                 <>
@@ -75,7 +80,11 @@ function TopBar() {
                   </Link>
                 </>
               )}
-              <Link className="text-reset me-3" to="/logout">
+              <Link
+                className="text-reset me-3"
+                to="/"
+                onClick={() => dispatch(logout(refreshToken))}
+              >
                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
               </Link>
 
@@ -104,7 +113,7 @@ function TopBar() {
           ) : (
             <div className="d-none d-lg-block">
               <ul className="navbar-nav mr-0 mb-lg-0 ">
-                {!isAuth && (
+                {!false && (
                   <>
                     <li className="nav-item">
                       <Link

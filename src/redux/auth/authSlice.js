@@ -1,53 +1,99 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { BASE_URL /*DEV_BASE_URL*/ } from "../../base";
+import { BASE_URL } from "../../base";
 
-const BASE = `${BASE_URL}/auth/register`;
+const DEV_BASE = `${BASE_URL}/auth/register`;
 //const DEV_BASE = `${DEV_BASE_URL}/auth`;
 
 export const AuthSlice = createSlice({
   name: "auth",
   initialState: {
-    isAuth: false,
-    isAdmin: false,
-    id: "",
-    role: "",
-    username: "",
-    email: "",
+    user: {
+      isAuth: false,
+      isAdmin: false,
+      id: "",
+      role: "",
+      username: "",
+      email: "",
+      accessToken: null,
+      refreshToken: null,
+    },
+    success: false,
     message: "",
-    accessToken: null,
-    refreshToken: null,
   },
   reducers: {
     success: (state, action) => {
-      const data = action.payload;
+      const userInfo = action.payload;
+      const data = userInfo.data;
+
       return {
         ...state,
-        isAuth: data.accessToken && data.refreshToken && true,
-        isAdmin: data.user.role === "admin",
-        id: data.user._id,
-        role: data.user.role,
-        username: data.user.username,
-        email: data.user.email,
-        message: "Success",
-        accessToken: data.accessToken,
-        refreshToken: data.refreshToken,
+        user: {
+          isAuth: data.accessToken && data.refreshToken && true,
+          isAdmin: data.user.role === "admin",
+          id: data.user._id,
+          role: data.user.role,
+          username: data.user.username,
+          email: data.user.email,
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
+        },
+        success: userInfo.success,
+        message: userInfo.message ? userInfo.message : "Success",
       };
     },
     failed: (state, action) => {
-      console.log(action);
+      return {
+        ...state,
+        success: false,
+        message: action.payload.message,
+      };
+    },
+    userLogout: (state, action) => {
+      const userInfo = action.payload;
+      return {
+        user: {
+          isAuth: false,
+          isAdmin: false,
+          id: "",
+          role: "",
+          username: "",
+          email: "",
+          accessToken: null,
+          refreshToken: null,
+        },
+        success: userInfo.success,
+        message: userInfo ? userInfo.message : "Successfully logout",
+      };
+    },
+    saveToLocalStorage: (state) => {
+      localStorage.setItem("userData", JSON.stringify(state.user));
+      localStorage.setItem("success", JSON.stringify(state.success));
+      localStorage.setItem("message", JSON.stringify(state.message));
+    },
+    deleteToLocalStorage: () => {
+      localStorage.removeItem("userData");
+      localStorage.removeItem("success");
+      localStorage.removeItem("message");
     },
   },
 });
 
-export const { success, failed } = AuthSlice.actions;
+export const {
+  success,
+  failed,
+  saveToLocalStorage,
+  deleteToLocalStorage,
+  userLogout,
+} = AuthSlice.actions;
 
 export const register = (data) => {
   return async (dispatch) => {
     try {
-      await axios.post(`${BASE}/register`, data).then((res) => {
+      await axios.post(`${DEV_BASE}/register`, data).then((res) => {
         if (res.status === 200) {
           dispatch(success(res.data));
+          dispatch(saveToLocalStorage());
         } else {
           dispatch(failed(res.data));
         }
@@ -61,13 +107,33 @@ export const register = (data) => {
 export const login = (data) => {
   return async (dispatch) => {
     try {
-      await axios.post(`${BASE}/login`, data).then((res) => {
-        if (res.status === 200) {
+      await axios.post(`${DEV_BASE}/login`, data).then((res) => {
+        if (res.data.success) {
           dispatch(success(res.data));
+          dispatch(saveToLocalStorage());
         } else {
           dispatch(failed(res.data));
         }
       });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const logout = (data) => {
+  return async (dispatch) => {
+    try {
+      await axios
+        .delete(`${DEV_BASE}/logout`, { headers: { refreshToken: data } })
+        .then((res) => {
+          if (res.success) {
+            dispatch(userLogout());
+            dispatch(deleteToLocalStorage());
+          } else {
+            dispatch(failed(res.data));
+          }
+        });
     } catch (err) {
       console.log(err);
     }
