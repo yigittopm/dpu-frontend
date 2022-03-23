@@ -11,6 +11,7 @@ import UserRoute from "./compotents/PrivateRoutes/User/UserRoute";
 import AdminRoute from "./compotents/PrivateRoutes/Admin/AdminRoute";
 import PrivateUserRoute from "./compotents/PrivateRoutes/User/PrivateUserRoute";
 import PrivateAdminRoute from "./compotents/PrivateRoutes/Admin/PrivateAdminRoute";
+import ProductDetail from "./compotents/Pages/ProductDetail";
 import NotFound from "./compotents/Pages/NotFound";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/products/:id" component={ProductDetail} />
         <PrivateUserRoute path="/profile" component={UserRoute} />
         <PrivateAdminRoute path="/admin" component={AdminRoute} />
         <Route path="*" component={NotFound} />
