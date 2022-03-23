@@ -32,12 +32,12 @@ function Products() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setIsLoading(success);
     setProductsData(products);
-  }, [success]);
+  }, [products, success]);
 
   console.log(products);
 
