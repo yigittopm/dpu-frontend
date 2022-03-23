@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 // Components
 import TopBar from "./compotents/Topbar/TopBar";
 import Categories from "./compotents/Topbar/Categories";
-import HomePage from "./compotents/Pages/Home/HomePage";
+import HomePage from "./compotents/Pages/Home";
 import RegisterPage from "./compotents/Pages/RegisterPage";
 import LoginPage from "./compotents/Pages/LoginPage";
 import UserRoute from "./compotents/PrivateRoutes/User/UserRoute";
