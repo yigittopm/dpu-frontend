@@ -121,19 +121,14 @@ export const login = (data) => {
 };
 
 export const logout = (data) => {
-  console.log(data);
   return async (dispatch) => {
     try {
       await axios
-        .delete(`${DEV_BASE}/logout`, {
-          headers: {
-            refreshToken: data,
-          },
-        })
+        .delete(`${DEV_BASE}/logout`, { refreshToken: data })
         .then((res) => {
-          console.log(res);
-          if (res.success) {
-            dispatch(userLogout());
+          const { success } = res.data;
+          if (success) {
+            dispatch(userLogout(res.data));
             dispatch(deleteToLocalStorage());
           } else {
             dispatch(failed(res.data));

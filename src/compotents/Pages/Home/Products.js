@@ -3,6 +3,8 @@ import ReactStars from "react-rating-stars-component";
 import CarouselPage from "./CarouselPage";
 import LoadingPage from "../LoadingPage";
 
+import { Card, Col } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../redux/product/productSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,44 +31,43 @@ function Products() {
         <>
           <CarouselPage />
 
-          <div className="row row-cols-xs-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4  m-3">
+          <div className="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  m-3">
             {productsData.map((product) => (
-              <div key={product._id} className="col mb-4">
-                <div className="card">
+              <Card className="p-2" key={product._id}>
+                <Col>
                   <img
                     src={product.image}
-                    className="card-img-top"
-                    width={250}
-                    height={250}
+                    className="card-img justify-content-center"
+                    width={150}
+                    height={150}
                     alt={product.description.substring(0, 30)}
                   />
-                  <div className="card-body">
-                    <Link to={`/products/${product._id}`}>
-                      <h5 className="card-title">{product.title}</h5>
-                      <p className="card-text">
-                        {product.price} <b>₺</b>
-                      </p>
-                      <p className="card-text">
-                        {product.description.substring(0, 100)}
-                      </p>
+                </Col>
+                <Card.Body>
+                  <Card.Title>{product.title}</Card.Title>
+                  <Card.Text>
+                    {product.price} <b>₺</b>
+                  </Card.Text>
+                  <Card.Text>{product.description.substring(0, 100)}</Card.Text>
 
-                      <ReactStars
-                        count={5}
-                        //onChange={ratingChanged}
-                        value={product.rating.toString()}
-                        size={16}
-                        isHalf={true}
-                        activeColor="#ffd700"
-                      />
+                  <ReactStars
+                    count={5}
+                    //onChange={ratingChanged}
+                    value={parseInt(product.rating)}
+                    size={16}
+                    isHalf={true}
+                    activeColor="#ffd700"
+                  />
 
-                      <Link to="/" className="btn btn-warning w-100">
-                        <span>Buy </span>
-                        {/* <i class="fa-solid fa-cart-shopping"></i> */}
-                      </Link>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+                  <Link
+                    to={`/products/${product._id}`}
+                    className="btn btn-warning w-100"
+                  >
+                    <span>İncele</span>
+                    {/* <i class="fa-solid fa-cart-shopping"></i> */}
+                  </Link>
+                </Card.Body>
+              </Card>
             ))}
           </div>
         </>

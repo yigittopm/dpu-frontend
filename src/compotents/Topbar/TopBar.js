@@ -1,14 +1,22 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/auth/authSlice";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import pp from "../../assets/avatars/2-small.png";
 import { AuthLocalStorage } from "../../LocalStorage";
+import { toast } from "react-toastify";
 
 function TopBar() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { pathname } = useLocation();
   const { isAuth, isAdmin, refreshToken } = AuthLocalStorage();
+
+  const logoutHandler = () => {
+    dispatch(logout(refreshToken));
+    history.push("/login");
+    toast.success("Successfully logout.");
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-2 text-light">
@@ -80,11 +88,7 @@ function TopBar() {
                   </Link>
                 </>
               )}
-              <Link
-                className="text-reset me-3"
-                to="/"
-                onClick={() => dispatch(logout(refreshToken))}
-              >
+              <Link className="text-reset me-3" to="/" onClick={logoutHandler}>
                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
               </Link>
 

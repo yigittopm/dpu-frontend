@@ -7,3 +7,11 @@ export const AuthLocalStorage = () => {
     ? JSON.parse(localStorage.getItem("userData"))
     : authSlice;
 };
+
+export const ProductLocalStorage = () => {
+  const productSlice = useSelector((state) => state.product);
+
+  return localStorage.getItem("currentProduct")
+    ? JSON.parse(localStorage.getItem("currentProduct"))
+    : productSlice;
+};

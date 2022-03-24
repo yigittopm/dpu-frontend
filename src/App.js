@@ -28,7 +28,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/products/:id" component={ProductDetail} />
+        <Route exact path="/products/:product_id" component={ProductDetail} />
         <PrivateUserRoute path="/profile" component={UserRoute} />
         <PrivateAdminRoute path="/admin" component={AdminRoute} />
         <Route path="*" component={NotFound} />
