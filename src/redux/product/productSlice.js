@@ -17,6 +17,9 @@ export const ProductSlice = createSlice({
     successProducts: (state, action) => {
       const data = action.payload;
       const products = data.data;
+      if (!localStorage.getItem("currentProduct")) {
+        localStorage.setItem("currentProduct", JSON.stringify(products[0]));
+      }
       return {
         ...state,
         products: products,

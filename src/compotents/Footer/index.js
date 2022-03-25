@@ -8,7 +8,10 @@ import CopyRight from "./CopyRight";
 
 function Footer() {
   return (
-    <footer className="bg-dark text-center text-white" style={{ bottom: "0" }}>
+    <footer
+      className="bg-dark text-center text-white"
+      style={{ bottom: "0", marginTop: "50px" }}
+    >
       <div className="container p-4">
         <SocialMedia />
         <ContactMe />

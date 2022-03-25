@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "../../redux/product/productSlice";
-import LoadingPage from "../Pages/LoadingPage";
 
 function Categories() {
   const dispatch = useDispatch();
@@ -19,7 +18,7 @@ function Categories() {
   }, [categories, success]);
   return (
     <div className="bg-light">
-      {isLoading ? (
+      {isLoading && (
         <ul className="list-group list-group-horizontal justify-content-around overflow-hidden">
           {categoriesData.map((category, index) => (
             <li key={index} className="list-group-item">
@@ -27,8 +26,6 @@ function Categories() {
             </li>
           ))}
         </ul>
-      ) : (
-        <LoadingPage />
       )}
     </div>
   );
