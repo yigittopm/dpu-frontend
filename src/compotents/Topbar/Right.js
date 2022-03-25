@@ -66,29 +66,26 @@ function Right() {
           </div>
         </>
       ) : (
-        <div className="d-none d-lg-block">
-          <ul className="navbar-nav mr-0 mb-lg-0 d-none d-lg-block">
-            {!false && (
-              <>
-                <li className="nav-item">
-                  <Link
-                    className={`nav-link ${pathname === "/login" && "active"}`}
-                    to="/login"
-                  >
-                    Login
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    className={`nav-link ${
-                      pathname === "/register" && "active"
-                    }`}
-                    to="/register"
-                  >
-                    Register
-                  </Link>
-                </li>
-              </>
+        <div className="">
+          <ul className="navbar-nav mr-0 mb-lg-0">
+            {pathname === "/login" ? (
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${pathname === "/register" && "active"}`}
+                  to="/register"
+                >
+                  Register
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${pathname === "/login" && "active"}`}
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </li>
             )}
           </ul>
         </div>
