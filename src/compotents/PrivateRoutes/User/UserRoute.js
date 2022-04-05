@@ -8,7 +8,6 @@ import NotFound from "../../Pages/NotFound";
 function UserRoute() {
   return (
     <>
-      <h3>Profile Route</h3>
       <Switch>
         <Route exact path="/profile/edit" component={EditProfile} />
         <Route exact path="/profile/shop-cart" component={ShopCart} />

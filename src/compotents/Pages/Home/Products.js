@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
-import CarouselPage from "./CarouselPage";
 import LoadingPage from "../LoadingPage";
 
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../redux/product/productSlice";
@@ -29,8 +28,6 @@ function Products() {
     <>
       {isLoading ? (
         <>
-          <CarouselPage />
-
           <div className="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  m-3">
             {productsData.map((product) => (
               <Card className="p-2" key={product._id}>
@@ -44,20 +41,47 @@ function Products() {
                   />
                 </Col>
                 <Card.Body>
-                  <Card.Title>{product.title}</Card.Title>
-                  <Card.Text>
-                    {product.price} <b>₺</b>
-                  </Card.Text>
-                  <Card.Text>{product.description.substring(0, 100)}</Card.Text>
+                  <Card.Title
+                    style={{
+                      minHeight: "50px",
+                      maxHeight: "50px",
+                      overflow: "hidden",
+                      whiteSpace: "pre-wrap",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {product.title}
+                  </Card.Title>
+                  <Row>
+                    <Col>
+                      <Card.Text>
+                        <b>{product.price} ₺</b>
+                      </Card.Text>
+                    </Col>
+                    <Col className="d-flex justify-content-end">
+                      <ReactStars
+                        count={5}
+                        //onChange={ratingChanged}
+                        value={parseInt(product.rating)}
+                        size={16}
+                        isHalf={true}
+                        activeColor="#ffd700"
+                      />
+                      <i>{product.rating}</i>
+                    </Col>
+                  </Row>
 
-                  <ReactStars
-                    count={5}
-                    //onChange={ratingChanged}
-                    value={parseInt(product.rating)}
-                    size={16}
-                    isHalf={true}
-                    activeColor="#ffd700"
-                  />
+                  <Card.Text
+                    style={{
+                      minHeight: "100px",
+                      maxHeight: "100px",
+                      overflow: "hidden",
+                      whiteSpace: "pre-wrap",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {product.description.substring(0, 100)}
+                  </Card.Text>
 
                   <Link
                     to={`/products/${product._id}`}

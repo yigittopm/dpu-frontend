@@ -7,7 +7,7 @@ function ProductCarousel({ productDetail }) {
       <Carousel.Item interval={1000}>
         <img
           src={productDetail.image}
-          className="img-top col-md-6"
+          className="img-top img-thumbnail col-md-6"
           width={250}
           height={250}
           alt={productDetail.description.substring(0, 30)}
@@ -16,7 +16,7 @@ function ProductCarousel({ productDetail }) {
       <Carousel.Item interval={2000}>
         <img
           src={productDetail.image}
-          className="img-top col-md-6"
+          className="img-top  img-thumbnail col-md-6"
           width={250}
           height={250}
           alt={productDetail.description.substring(0, 30)}
