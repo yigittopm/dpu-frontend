@@ -2,10 +2,12 @@ import React from "react";
 import pp from "../../assets/avatars/1-small.png";
 import { Link, useLocation } from "react-router-dom";
 import { AuthLocalStorage } from "../../LocalStorage";
+import { ShopCartLocalStorage } from "../../LocalStorage";
 
 function Right() {
   const { pathname } = useLocation();
   const { isAuth, isAdmin } = AuthLocalStorage();
+  const shopCart = ShopCartLocalStorage();
 
   return (
     <div className="d-flex align-items-center">
@@ -25,11 +27,16 @@ function Right() {
             <i className="fa-solid fa-arrow-right-from-bracket"></i>
           </Link>
 
-          <Link className="text-reset me-3 d-none d-md-block" to="/shop-cart">
+          <Link
+            className="text-reset me-3 d-none d-md-block"
+            to="/profile/shop-cart"
+          >
             <i className="fas fa-shopping-cart"></i>
-            <span className="badge rounded-pill badge-notification bg-danger">
-              0
-            </span>
+            {shopCart.length > 0 && (
+              <span className="badge rounded-pill badge-notification bg-danger">
+                {shopCart.length}
+              </span>
+            )}
           </Link>
 
           <div className="dropdown">

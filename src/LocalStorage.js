@@ -15,3 +15,11 @@ export const ProductLocalStorage = () => {
     ? JSON.parse(localStorage.getItem("currentProduct"))
     : productSlice;
 };
+
+export const ShopCartLocalStorage = () => {
+  const { shopCart } = useSelector((state) => state.product);
+
+  return localStorage.getItem("shopCart")
+    ? JSON.parse(localStorage.getItem("shopCart"))
+    : shopCart;
+};

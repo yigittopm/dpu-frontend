@@ -9,6 +9,7 @@ export const ProductSlice = createSlice({
   initialState: {
     products: [],
     categories: [],
+    shopCart: [],
     currentProduct: {},
     success: false,
     message: "",
@@ -44,6 +45,11 @@ export const ProductSlice = createSlice({
         categories: data,
       };
     },
+    successAddShopCart: (state, action) => {
+      state.shopCart.push(action.payload);
+      localStorage.setItem("shopCart", JSON.stringify(state.shopCart));
+    },
+    successRemoveFromShopCart: (state, action) => {},
     failed: (state, action) => {},
   },
 });
@@ -52,6 +58,8 @@ export const {
   successProducts,
   successCurrentProduct,
   successCategories,
+  successAddShopCart,
+  successRemoveFromShopCart,
   failed,
 } = ProductSlice.actions;
 
@@ -100,6 +108,18 @@ export const getAllCategories = (data) => {
     } catch (err) {
       console.log(err);
     }
+  };
+};
+
+export const addProductToShopCart = (data) => {
+  return async (dispatch) => {
+    dispatch(successAddShopCart(data));
+  };
+};
+
+export const removeProductFromShopCart = (data) => {
+  return async (dispatch) => {
+    dispatch(successRemoveFromShopCart(data));
   };
 };
 
