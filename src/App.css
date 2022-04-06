@@ -3,3 +3,55 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.list-div {
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.list-ul {
+    background-color: #2f3032 !important;
+    align-items: center;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    max-height: 25px !important;
+    white-space: nowrap;
+    overflow-y: hidden;
+}
+
+
+.list-li {
+    color: rgb(137, 137, 137) !important;
+    background-color: inherit !important;
+    font-size: 16px;
+    margin-left: 11px;
+    margin-right: 10px;
+    border: none !important;
+    transition: color 0.15s;
+}
+
+.list-li.active {
+    color: rgba(200, 200, 201, 0.896) !important;
+}
+
+.list-li:hover {
+    color: rgba(218, 218, 218, 0.896) !important;
+}
+
+::-webkit-scrollbar{
+        height: 4px;
+        width: 4px;
+        background: gray;
+    }
+    ::-webkit-scrollbar-thumb:horizontal{
+        background: #000;
+        border-radius: 10px;
+    }
+
+@media screen and (max-width: 960px) {
+    /*i will add item*/
+    .home-carousel {
+        
+    }
+}
+

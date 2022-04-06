@@ -1,32 +1,78 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCategories } from "../../redux/product/productSlice";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Categories() {
-  const dispatch = useDispatch();
-  const { categories, success } = useSelector((state) => state.product);
-  const [isLoading, setIsLoading] = useState(success);
-  const [categoriesData, setCategoriesData] = useState(categories);
+  const categories = [
+    {
+      name: "All",
+      to: "/",
+      isActive: true,
+    },
+    {
+      name: "Headphones",
+      to: "/products/categories/Headphone",
+      isActive: false,
+    },
+    {
+      name: "Mobile Phones",
+      to: "/",
+      isActive: false,
+    },
+    {
+      name: "TV",
+      to: "/",
+      isActive: false,
+    },
+    {
+      name: "Laptops",
+      to: "/",
+      isActive: false,
+    },
+    {
+      name: "Smart Watchs",
+      to: "/",
+      isActive: false,
+    },
+    {
+      name: "Headphones",
+      to: "/",
+      isActive: false,
+    },
+    {
+      name: "Mobile Phones",
+      to: "/",
+      isActive: false,
+    },
+    {
+      name: "TV",
+      to: "/",
+      isActive: false,
+    },
+    {
+      name: "Laptops",
+      to: "/",
+      isActive: false,
+    },
+    {
+      name: "Smart Watchs",
+      to: "/",
+      isActive: false,
+    },
+  ];
 
-  useEffect(() => {
-    dispatch(getAllCategories());
-  }, [dispatch]);
-
-  useEffect(() => {
-    setIsLoading(success);
-    setCategoriesData(categories);
-  }, [categories, success]);
   return (
-    <div className="bg-light">
-      {isLoading && (
-        <ul className="list-group list-group-horizontal justify-content-around overflow-hidden">
-          {categoriesData.map((category, index) => (
-            <li key={index} className="list-group-item">
-              {category}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="bg-light list-div">
+      <ul className="list-group list-group-horizontal list-ul">
+        {categories.map((item, index) => (
+          <Link
+            key={index}
+            className={`list-group-item list-li  ${item.isActive && "active"}`}
+            to={item.to}
+          >
+            {item.name}
+          </Link>
+        ))}
+      </ul>
     </div>
   );
 }

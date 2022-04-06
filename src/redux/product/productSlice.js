@@ -8,7 +8,6 @@ export const ProductSlice = createSlice({
   name: "product",
   initialState: {
     products: [],
-    categories: [],
     shopCart: [],
     currentProduct: {},
     success: false,
@@ -38,13 +37,6 @@ export const ProductSlice = createSlice({
         currentProduct: data,
       };
     },
-    successCategories: (state, action) => {
-      const { data } = action.payload.data;
-      return {
-        ...state,
-        categories: data,
-      };
-    },
     successAddShopCart: (state, action) => {
       state.shopCart.push(action.payload);
       localStorage.setItem("shopCart", JSON.stringify(state.shopCart));
@@ -57,7 +49,6 @@ export const ProductSlice = createSlice({
 export const {
   successProducts,
   successCurrentProduct,
-  successCategories,
   successAddShopCart,
   successRemoveFromShopCart,
   failed,
@@ -79,6 +70,12 @@ export const getAllProducts = (data) => {
   };
 };
 
+export const getProductsByCategories = (data) => {
+  return async (dispatch) => {
+    await axios.get(`${DEV_BASE}/categories/${data}`);
+  };
+};
+
 export const getProductById = (data) => {
   return async (dispatch) => {
     try {
@@ -91,22 +88,6 @@ export const getProductById = (data) => {
       });
     } catch (e) {
       console.log(e);
-    }
-  };
-};
-
-export const getAllCategories = (data) => {
-  return async (dispatch) => {
-    try {
-      await axios.get(`${DEV_BASE}/categories`).then((res) => {
-        if (res.data.success) {
-          dispatch(successCategories(res));
-        } else {
-          dispatch(failed(res.data));
-        }
-      });
-    } catch (err) {
-      console.log(err);
     }
   };
 };

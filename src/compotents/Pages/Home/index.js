@@ -8,6 +8,7 @@ function HomePage() {
     <div className="">
       <CarouselPage />
       <Products />
+      <Products />
     </div>
   );
 }
