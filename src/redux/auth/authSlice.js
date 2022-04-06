@@ -74,6 +74,8 @@ export const AuthSlice = createSlice({
       localStorage.removeItem("userData");
       localStorage.removeItem("success");
       localStorage.removeItem("message");
+      localStorage.removeItem("currentProduct");
+      localStorage.removeItem("shopCart");
     },
   },
 });
@@ -124,9 +126,14 @@ export const logout = (data) => {
   return async (dispatch) => {
     try {
       await axios
-        .delete(`${DEV_BASE}/logout`, { refreshToken: data })
+        .delete(`${DEV_BASE}/logout`, {
+          headers: {
+            refreshToken: data,
+          },
+        })
         .then((res) => {
           const { success } = res.data;
+          console.log(res);
           if (success) {
             dispatch(userLogout(res.data));
             dispatch(deleteToLocalStorage());

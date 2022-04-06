@@ -11,13 +11,16 @@ function Product({ productDetail }) {
   const dispatch = useDispatch();
 
   return (
-    <Card className="d-flex d-wrap m-4 p-3 bg-light">
+    <Card className="d-flex d-wrap m-4 bg-light border-light">
       <Row>
-        <Col md={6}>
-          <ProductCarousel productDetail={productDetail} />
+        <Col md={6} className="bg-white border">
+          <ProductCarousel productDetail={productDetail.images} />
         </Col>
 
-        <Col md={6} className="align-items-center justify-content-center mt-4">
+        <Col
+          md={6}
+          className="align-items-center justify-content-center bg-light p-3"
+        >
           <Card.Title>{productDetail.title}</Card.Title>
           <Row>
             <Col>

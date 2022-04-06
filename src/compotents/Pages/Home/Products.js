@@ -23,20 +23,20 @@ function Products() {
     setIsLoading(success);
     setProductsData(products);
   }, [products, success]);
-
   return (
     <>
       {isLoading ? (
         <>
-          <div className="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  m-3">
-            {productsData.map((product) => (
-              <Card className="p-2" key={product._id}>
+          <div className="row m-3 row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+            {productsData.map((product, index) => (
+              <Card className="p-2 border-light" key={product._id}>
                 <Col>
                   <img
-                    src={product.image}
-                    className="card-img justify-content-center"
-                    width={150}
-                    height={150}
+                    src={product.images[0]}
+                    className="card-img img-thumbnail justify-content-center"
+                    width={50}
+                    height={50}
+                    style={{ border: "none" }}
                     alt={product.description.substring(0, 30)}
                   />
                 </Col>
@@ -73,8 +73,8 @@ function Products() {
 
                   <Card.Text
                     style={{
-                      minHeight: "100px",
-                      maxHeight: "100px",
+                      minHeight: "60px",
+                      maxHeight: "60px",
                       overflow: "hidden",
                       whiteSpace: "pre-wrap",
                       textOverflow: "ellipsis",

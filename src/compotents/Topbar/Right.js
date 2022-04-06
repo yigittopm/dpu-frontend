@@ -3,10 +3,13 @@ import pp from "../../assets/avatars/1-small.png";
 import { Link, useLocation } from "react-router-dom";
 import { AuthLocalStorage } from "../../LocalStorage";
 import { ShopCartLocalStorage } from "../../LocalStorage";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/auth/authSlice";
 
 function Right() {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const { isAuth, isAdmin } = AuthLocalStorage();
+  const { isAuth, isAdmin, refreshToken } = AuthLocalStorage();
   const shopCart = ShopCartLocalStorage();
 
   return (
@@ -23,7 +26,11 @@ function Right() {
               </Link>
             </>
           )}
-          <Link className="text-reset me-3 d-none d-md-block" to="/">
+          <Link
+            className="text-reset me-3 d-none d-md-block"
+            onClick={() => dispatch(logout(refreshToken))}
+            to="/"
+          >
             <i className="fa-solid fa-arrow-right-from-bracket"></i>
           </Link>
 
@@ -39,38 +46,22 @@ function Right() {
             )}
           </Link>
 
-          <div className="dropdown">
-            <Link
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img
-                src={pp}
-                className="rounded-circle"
-                height="30"
-                alt="Profil"
-                loading="lazy"
-              />
-            </Link>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                <a className="dropdown-item" href="/">
-                  Action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="/">
-                  Another action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="/">
-                  Something else here
-                </a>
-              </li>
-            </ul>
-          </div>
+          <Link to="/profile/edit" className="d-none d-md-block">
+            <img
+              src={pp}
+              className="rounded-circle"
+              height="30"
+              alt="Profil"
+              loading="lazy"
+            />
+          </Link>
+
+          <button className=" btn btn-dark text-light d-md-none" type="button">
+            <i
+              style={{ fontSize: "1.3rem" }}
+              className="fa-solid fa-magnifying-glass"
+            ></i>
+          </button>
         </>
       ) : (
         <div className="">

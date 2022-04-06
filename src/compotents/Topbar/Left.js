@@ -1,55 +1,22 @@
 import React from "react";
+import { useSidebar } from "../../context/Sidebar";
 
 function Left() {
+  const { isOpen, setIsOpen } = useSidebar();
+
   return (
-    <div className="">
+    <div>
       <button
         className=" btn btn-dark text-light"
         type="button"
-        id="dropdownMenuButton1"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
+        onClick={() => setIsOpen(!isOpen)}
       >
-        <i style={{ fontSize: "1.4rem" }} className="fa-solid fa-bars"></i>
+        {isOpen ? (
+          <i style={{ fontSize: "1.4rem" }} className="fa-solid fa-xmark"></i>
+        ) : (
+          <i style={{ fontSize: "1.4rem" }} className="fa-solid fa-bars"></i>
+        )}
       </button>
-      <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li className="dropdown-title">Categories</li>
-        <li>
-          <a className="dropdown-item" href="/">
-            Action
-          </a>
-        </li>
-        <li>
-          <a className="dropdown-item" href="/">
-            Another action
-          </a>
-        </li>
-        <li>
-          <a className="dropdown-item" href="/">
-            Something else here
-          </a>
-        </li>
-        <li>
-          <a className="dropdown-item" href="/">
-            Another action
-          </a>
-        </li>
-        <li>
-          <a className="dropdown-item" href="/">
-            Something else here
-          </a>
-        </li>
-        <li>
-          <a className="dropdown-item" href="/">
-            Another action
-          </a>
-        </li>
-        <li>
-          <a className="dropdown-item" href="/">
-            Something else here
-          </a>
-        </li>
-      </ul>
     </div>
   );
 }

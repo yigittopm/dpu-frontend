@@ -1,14 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
 import { register } from "../../redux/auth/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { AuthLocalStorage } from "../../LocalStorage";
+import { toast } from "react-toastify";
 
 function RegisterPage() {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const userData = AuthLocalStorage();
 
   const validateForm = Yup.object().shape({
     username: Yup.string().min(4, "Min 4").max(32, "Max 32").required(),
@@ -19,7 +22,16 @@ function RegisterPage() {
       .required(),
     password: Yup.string().min(6, "Min 6").max(512, "Max 512").required(),
   });
-  console.log(user);
+
+  useEffect(() => {
+    if (userData.success) {
+      toast.success("Login success!");
+      setTimeout(() => {
+        history.push("/profile/edit");
+      });
+    }
+  });
+
   return (
     <div className="d-flex justify-content-center mt-3 row m-0">
       <Formik
@@ -29,8 +41,8 @@ function RegisterPage() {
           password: "",
         }}
         validationSchema={validateForm}
-        onSubmit={(values) => {
-          dispatch(register(values));
+        onSubmit={async (values) => {
+          await dispatch(register(values));
         }}
       >
         {({

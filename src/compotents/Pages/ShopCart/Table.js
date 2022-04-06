@@ -22,13 +22,15 @@ function Table({ shopCart }) {
                 <img
                   alt="productImage"
                   style={{ height: "100px", borderRadius: "5px" }}
-                  src={item.image}
+                  src={item.images[0]}
                 />
               </td>
               <td>{item.title.substring(0, 25)}...</td>
               <td>{item.description.substring(0, 10)}</td>
 
-              <td>{item.price}</td>
+              <td>
+                {item.price} <b>₺</b>
+              </td>
               <td>1</td>
             </tr>
           ))}
