@@ -16,22 +16,22 @@ function Table({ shopCart }) {
         </thead>
         <tbody>
           {shopCart.map((item, index) => (
-            <tr style={{ maxHeight: "100px" }} key={item._id}>
+            <tr style={{ maxHeight: "100px" }} key={item.productDetail._id}>
               <th scope="row">{index + 1}</th>
               <td>
                 <img
                   alt="productImage"
                   style={{ height: "100px", borderRadius: "5px" }}
-                  src={item.images[0]}
+                  src={item.productDetail.images[0]}
                 />
               </td>
-              <td>{item.title.substring(0, 25)}...</td>
-              <td>{item.description.substring(0, 25)}</td>
+              <td>{item.productDetail.title.substring(0, 25)}...</td>
+              <td>{item.productDetail.description.substring(0, 25)}</td>
 
               <td>
-                {item.price} <b>₺</b>
+                {item.productDetail.price} <b>₺</b>
               </td>
-              <td>1</td>
+              <td>{item.count}</td>
             </tr>
           ))}
         </tbody>
