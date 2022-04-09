@@ -15,9 +15,9 @@ function Table({ shopCart }) {
           </tr>
         </thead>
         <tbody>
-          {shopCart.map((item) => (
+          {shopCart.map((item, index) => (
             <tr style={{ maxHeight: "100px" }} key={item._id}>
-              <th scope="row">{item._id.substring(0, 10)}</th>
+              <th scope="row">{index + 1}</th>
               <td>
                 <img
                   alt="productImage"
@@ -26,7 +26,7 @@ function Table({ shopCart }) {
                 />
               </td>
               <td>{item.title.substring(0, 25)}...</td>
-              <td>{item.description.substring(0, 10)}</td>
+              <td>{item.description.substring(0, 25)}</td>
 
               <td>
                 {item.price} <b>₺</b>

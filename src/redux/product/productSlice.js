@@ -51,7 +51,9 @@ export const ProductSlice = createSlice({
       };
     },
     successAddShopCart: (state, action) => {
-      state.shopCart.push(action.payload);
+      const { productDetail, count } = action.payload;
+
+      state.shopCart.push({ productDetail, count });
       localStorage.setItem("shopCart", JSON.stringify(state.shopCart));
     },
     successRemoveFromShopCart: (state, action) => {},
