@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-function NotFound() {
+function NotFound(props) {
   const { pathname } = useLocation();
 
   return (
@@ -14,11 +14,18 @@ function NotFound() {
         alt="Not Found!"
         src={require("../../assets/notFound/notFound.jpg")}
       />
-      <h2>This Page Was Not Found.</h2>
+      <h2>
+        {props.statusCode} - {props.message}
+      </h2>
       <hr />
       <h4>{pathname}</h4>
     </div>
   );
 }
+
+NotFound.defaultProps = {
+  statusCode: 404,
+  message: "This Page Was Not Found",
+};
 
 export default NotFound;

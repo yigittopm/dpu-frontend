@@ -10,52 +10,52 @@ function Categories() {
     },
     {
       name: "Headphones",
-      to: "/products/categories/Headphone",
+      to: "/categories/Headphone",
       isActive: false,
     },
     {
       name: "Mobile Phones",
-      to: "/",
+      to: "/categories/MobilePhone",
       isActive: false,
     },
     {
       name: "TV",
-      to: "/",
+      to: "/categories/TV",
       isActive: false,
     },
     {
       name: "Laptops",
-      to: "/",
+      to: "/categories/Laptop",
       isActive: false,
     },
     {
       name: "Smart Watchs",
-      to: "/",
+      to: "/categories/SmartWatch",
       isActive: false,
     },
     {
       name: "Headphones",
-      to: "/",
+      to: "/categories/Headphone",
       isActive: false,
     },
     {
       name: "Mobile Phones",
-      to: "/",
+      to: "/categories/MobilePhone",
       isActive: false,
     },
     {
       name: "TV",
-      to: "/",
+      to: "/categories/TV",
       isActive: false,
     },
     {
       name: "Laptops",
-      to: "/",
+      to: "/categories/Laptop",
       isActive: false,
     },
     {
       name: "Smart Watchs",
-      to: "/",
+      to: "/categories/SmartWatch",
       isActive: false,
     },
   ];

@@ -8,7 +8,7 @@ import Sidebar from "../Sidebar";
 function TopBar() {
   return (
     <nav className="container-fuild">
-      <div className="justify-content-evenly navbar navbar-expand-lg navbar-dark bg-dark text-light">
+      <div className="justify-content-around navbar navbar-expand-lg navbar-dark bg-dark text-light">
         <Left />
         <Logo />
         <SearchBar />

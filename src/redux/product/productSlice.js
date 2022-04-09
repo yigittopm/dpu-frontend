@@ -27,6 +27,19 @@ export const ProductSlice = createSlice({
         message: "Success",
       };
     },
+    successProductsByCategory: (state, action) => {
+      const data = action.payload;
+      const products = data.data;
+      if (!localStorage.getItem("currentProduct")) {
+        localStorage.setItem("currentProduct", JSON.stringify(products[0]));
+      }
+      return {
+        ...state,
+        products: products,
+        success: data.success,
+        message: "Success",
+      };
+    },
     successCurrentProduct: (state, action) => {
       const { data } = action.payload;
       localStorage.setItem("currentProduct", JSON.stringify(data));
@@ -48,6 +61,7 @@ export const ProductSlice = createSlice({
 
 export const {
   successProducts,
+  successProductsByCategory,
   successCurrentProduct,
   successAddShopCart,
   successRemoveFromShopCart,
@@ -72,7 +86,17 @@ export const getAllProducts = (data) => {
 
 export const getProductsByCategories = (data) => {
   return async (dispatch) => {
-    await axios.get(`${DEV_BASE}/categories/${data}`);
+    try {
+      await axios.get(`${DEV_BASE}/categories/${data}`).then((res) => {
+        if (res.data.success) {
+          dispatch(successProductsByCategory(res.data));
+        } else {
+          dispatch(failed(res.data));
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 };
 

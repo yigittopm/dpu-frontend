@@ -8,6 +8,7 @@ import HomePage from "../Pages/Home";
 import RegisterPage from "../Pages/RegisterPage";
 import LoginPage from "../Pages/LoginPage";
 import ProductDetail from "../Pages/ProductDetail";
+import Category from "../Pages/Category";
 import UserRoute from "../PrivateRoutes/User/UserRoute";
 import AdminRoute from "../PrivateRoutes/Admin/AdminRoute";
 import NotFound from "../Pages/NotFound";
@@ -22,6 +23,7 @@ function Content() {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/products/:product_id" component={ProductDetail} />
+        <Route exact path="/categories/:category" component={Category} />
         <PrivateUserRoute path="/profile" component={UserRoute} />
         <PrivateAdminRoute path="/admin" component={AdminRoute} />
         <Route path="*" component={NotFound} />
