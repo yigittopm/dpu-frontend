@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ProductLocalStorage } from "../../../LocalStorage";
 import { getProductById } from "../../../redux/product/productSlice";
-import LoadingPage from "../LoadingPage";
+import LoadingPage from "../Loading";
 import Product from "./Product";
 
 function Detail() {

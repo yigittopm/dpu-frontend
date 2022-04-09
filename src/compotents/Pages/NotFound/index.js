@@ -12,7 +12,7 @@ function NotFound(props) {
       <img
         height="250px"
         alt="Not Found!"
-        src={require("../../assets/notFound/notFound.jpg")}
+        src={require("../../../assets/notFound/notFound.jpg")}
       />
       <h2>
         {props.statusCode} - {props.message}

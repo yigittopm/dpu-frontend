@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Product from "../../Product";
-import LoadingPage from "../LoadingPage";
+import LoadingPage from "../Loading";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";

@@ -2,19 +2,19 @@ import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
+//import { toast } from "react-toastify";
 
-import { register } from "../../redux/auth/authSlice";
+import { login } from "../../../redux/auth/authSlice";
 import { useDispatch } from "react-redux";
-import { AuthLocalStorage } from "../../LocalStorage";
+import { AuthLocalStorage } from "../../../LocalStorage";
 import { toast } from "react-toastify";
 
-function RegisterPage() {
+function LoginPage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const userData = AuthLocalStorage();
 
   const validateForm = Yup.object().shape({
-    username: Yup.string().min(4, "Min 4").max(32, "Max 32").required(),
     email: Yup.string()
       .min(12, "Min 12")
       .max(64, "Max 64")
@@ -36,13 +36,21 @@ function RegisterPage() {
     <div className="d-flex justify-content-center mt-3 row m-0">
       <Formik
         initialValues={{
-          username: "",
           email: "",
           password: "",
         }}
         validationSchema={validateForm}
         onSubmit={async (values) => {
-          await dispatch(register(values));
+          await dispatch(login(values));
+          // const result = data;
+          // if (result) {
+          //   toast.success("Success");
+          //   setTimeout(() => {
+          //     history.push("/profile");
+          //   }, 2000);
+          // } else {
+          //   toast.warning("Login failed");
+          // }
         }}
       >
         {({
@@ -58,27 +66,7 @@ function RegisterPage() {
             onSubmit={handleSubmit}
             className="col-lg-3 col-md-6 col-sm-8 col-xs-10"
           >
-            <h4 className="mt-2 mb-2 text-center">Register</h4>
-
-            <div className="form-group form-outline mb-1 mt-3">
-              <label className="form-label" id="username">
-                Username
-              </label>
-              <input
-                type="text"
-                name="username"
-                placeholder="MertY"
-                className={`form-control ${
-                  errors.username && touched.username && "is-invalid"
-                }`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.username}
-              />
-              {errors.username && touched.username && (
-                <small className="text-danger">{errors.username}</small>
-              )}
-            </div>
+            <h4 className="mt-2 mb-2 text-center">Login</h4>
 
             <div className="form-group form-outline mb-1">
               <label className="form-label" id="email">
@@ -120,14 +108,14 @@ function RegisterPage() {
               )}
             </div>
             <small>
-              Already have an account ? <Link to="/login">Login</Link>
+              Don't have an account ? <Link to="/register">Sign up</Link>
             </small>
             <button
               type="submit"
               disabled={isSubmitting}
               className="btn btn-warning form-control mt-3"
             >
-              Register
+              Login
             </button>
           </form>
         )}
@@ -136,4 +124,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default LoginPage;
