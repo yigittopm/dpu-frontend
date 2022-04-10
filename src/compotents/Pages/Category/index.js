@@ -24,8 +24,16 @@ function Category({ match }) {
   }, [products, success]);
 
   return (
-    <>
-      <h1>{category}</h1>
+    <div className="p-2">
+      <div
+        style={{ backgroundColor: "rgb(221, 255, 237)" }}
+        className="d-flex align-items-center text-dark rounded"
+      >
+        <h5>
+          {category} <small>(55 Ürün bulundu)</small>
+        </h5>
+      </div>
+
       {isLoading ? (
         <div className="row m-3 row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
           {categoryProduct.map((product) => (
@@ -35,7 +43,7 @@ function Category({ match }) {
       ) : (
         <LoadingPage />
       )}
-    </>
+    </div>
   );
 }
 

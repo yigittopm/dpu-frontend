@@ -9,10 +9,14 @@ function ShopCart() {
   const shopCart = ShopCartLocalStorage();
 
   return (
-    <div className="p-4">
+    <div className="p-4 row">
       <Title />
-      <Table shopCart={shopCart} />
-      <BuyButton />
+      <div className="col-lg-9 col-ms-12 mb-2">
+        <Table shopCart={shopCart} />
+      </div>
+      <div className="col-lg-3 col-sm-12">
+        <BuyButton />
+      </div>
     </div>
   );
 }

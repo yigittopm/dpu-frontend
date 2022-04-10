@@ -4,6 +4,8 @@ import { Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function ProductSchema({ product }) {
+  const discount = (parseFloat(product.price) * 110) / 100;
+  const result = discount.toFixed(3);
   return (
     <Card className="p-2 border-light" key={product._id}>
       <Col>
@@ -28,6 +30,14 @@ function ProductSchema({ product }) {
         >
           {product.title}
         </Card.Title>
+        <i
+          style={{
+            textDecoration: "line-through",
+            color: "	rgb(168,168,168)",
+          }}
+        >
+          {result} ₺
+        </i>
         <Row>
           <Col>
             <Card.Text>

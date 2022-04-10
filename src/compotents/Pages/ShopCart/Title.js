@@ -2,8 +2,8 @@ import React from "react";
 
 function Title() {
   return (
-    <div>
-      <h1>Sepetim</h1>
+    <div className="mb-3">
+      <h2>Sepetim (2 ürün)</h2>
     </div>
   );
 }
