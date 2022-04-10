@@ -10,7 +10,7 @@ import LoginPage from "../Pages/Login";
 import ProductDetail from "../Pages/ProductDetail";
 import Category from "../Pages/Category";
 import UserRoute from "../PrivateRoutes/User/UserRoute";
-import AdminRoute from "../PrivateRoutes/Admin/AdminRoute";
+import AdminRoute from "../PrivateRoutes/Admin/Route";
 import NotFound from "../Pages/NotFound";
 import Footer from "../Footer";
 

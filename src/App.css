@@ -55,3 +55,12 @@
     }
 }
 
+
+.admin-btn-link {
+    transition: color 0.2s;
+}
+
+
+.admin-btn-link:hover {
+    color: rgb(210, 210, 210) !important;
+}

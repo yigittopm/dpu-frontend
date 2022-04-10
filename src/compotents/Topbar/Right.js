@@ -1,5 +1,4 @@
 import React from "react";
-import pp from "../../assets/avatars/1-small.png";
 import { Link, useLocation } from "react-router-dom";
 import { AuthLocalStorage } from "../../LocalStorage";
 import { ShopCartLocalStorage } from "../../LocalStorage";
@@ -9,7 +8,7 @@ import { logout } from "../../redux/auth/authSlice";
 function Right() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const { isAuth, isAdmin, refreshToken } = AuthLocalStorage();
+  const { isAuth, isAdmin, refreshToken, image } = AuthLocalStorage();
   const shopCart = ShopCartLocalStorage();
 
   return (
@@ -48,9 +47,11 @@ function Right() {
 
           <Link to="/profile/edit" className="d-none d-md-block">
             <img
-              src={pp}
+              src={image}
+              style={{ borderRadius: "50%" }}
               className="rounded-circle"
               height="30"
+              width="30"
               alt="Profil"
               loading="lazy"
             />
