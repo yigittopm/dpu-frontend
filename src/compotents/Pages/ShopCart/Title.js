@@ -1,9 +1,9 @@
 import React from "react";
 
-function Title() {
+function Title({ length }) {
   return (
     <div className="mb-3">
-      <h2>Sepetim (2 ürün)</h2>
+      <h2>Sepetim {length < 1 ? null : <>({length} Ürün)</>}</h2>
     </div>
   );
 }

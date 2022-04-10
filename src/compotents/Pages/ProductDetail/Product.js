@@ -11,8 +11,14 @@ import { Link } from "react-router-dom";
 function Product({ productDetail }) {
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
-  const discount = (parseFloat(productDetail.price) * 110) / 100;
+
+  const data = parseInt(productDetail.price.replace(".", ","));
+
+  const discount = (data * 110) / 100;
   const result = discount.toFixed(3);
+
+  const installment = 6;
+  const dividePrice = result / installment;
 
   const setCountValue = (value) => {
     if (value < 0 && count === 1) return setCount(1);
@@ -44,8 +50,8 @@ function Product({ productDetail }) {
                   }}
                 >
                   {result} ₺
-                </i>
-                |<b className="text-success">%10 İndirim</b>
+                </i>{" "}
+                | <b className="text-success">%10 İndirim</b>
               </Col>
             </Row>
             <Row>
@@ -67,18 +73,38 @@ function Product({ productDetail }) {
                 />
               </Col>
             </Row>
+            <Row>
+              <Col>
+                <small>
+                  <i>
+                    {installment} Taksit X {dividePrice.toFixed(3)},00 TL
+                  </i>
+                </small>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <p>
+                  <i className="fa-solid fa-truck mr-3 text-success"></i>{" "}
+                  <i className="text-success">
+                    <b>Hızlı Teslimat:</b>
+                  </i>
+                  <i>1 gün içinde kargoda!</i>
+                </p>
+              </Col>
+            </Row>
           </div>
 
           <div className="mb-3">
             <details>
               <summary>Teknik Özellikler</summary>
               <ul style={{ textDecoration: "none" }}>
-                <li>Fiyat Performans</li>
-                <li>Fiyat Performans</li>
-                <li>Fiyat Performans</li>
-                <li>Fiyat Performans</li>
-                <li>Fiyat Performans</li>
-                <li>Fiyat Performans</li>
+                <li>Fiyat Performans test 11</li>
+                <li>Fiyat Performans test 11</li>
+                <li>Fiyat Performans test 11</li>
+                <li>Fiyat Performans test 11</li>
+                <li>Fiyat Performans test 11</li>
+                <li>Fiyat Performans test 11</li>
               </ul>
             </details>
           </div>
@@ -109,8 +135,10 @@ function Product({ productDetail }) {
             </ButtonGroup>
 
             <Link to="/profile/shop-cart">
-              <b>Sepete Git </b>
-              <i class="fa-solid fa-cart-arrow-down"></i>
+              <button className="btn bg-secondary text-light">
+                <b>Sepete Git </b>
+                <i class="fa-solid fa-cart-arrow-down"></i>
+              </button>
             </Link>
           </div>
         </Col>

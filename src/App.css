@@ -48,12 +48,6 @@
         border-radius: 10px;
     }
 
-@media screen and (max-width: 960px) {
-    /*i will add item*/
-    .home-carousel {
-        
-    }
-}
 
 
 .admin-btn-link {

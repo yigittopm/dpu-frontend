@@ -3,18 +3,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
 
-function BuyButton() {
+function BuyButton({ products }) {
+  const sum = (arr) => {
+    return arr.reduce((prev, curr) => prev + curr);
+  };
+  const counts = products.map((item) => item.count);
+  const totalProduct = sum(counts);
+
+  const prices = products.map((item) => {
+    return item.count * item.productDetail.price;
+  });
+  const totalPrice = sum(prices);
+
   return (
     <Card className="p-2 bg-light text-dark border-0">
       <CardBody>
         <h2>Sipariş Özeti</h2>
         <div className="d-flex justify-content-between">
           <label>Sepet Tutarı: </label>
-          <i>9000 ₺</i>
+          <i>{totalPrice.toFixed(3)} ₺</i>
         </div>
         <div className="d-flex justify-content-between">
           <label>Toplam Adet: </label>
-          <i>10</i>
+          <i>
+            <b>{totalProduct}</b>
+          </i>
         </div>
         <div className="d-flex justify-content-between">
           <label>Kargo:</label>
@@ -25,7 +38,7 @@ function BuyButton() {
         <hr />
         <div className="d-flex justify-content-between mb-2">
           <label>Ödenecek Tutar:</label>
-          <b style={{ fontSize: "20px" }}>9500,00 ₺</b>
+          <b style={{ fontSize: "20px" }}>{totalPrice.toFixed(3)},00 ₺</b>
         </div>
         <Link to="/" className="btn btn-primary w-100 text-light">
           Alışverişi Tamamla

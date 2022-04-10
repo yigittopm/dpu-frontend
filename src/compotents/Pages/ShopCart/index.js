@@ -8,17 +8,18 @@ import BuyButton from "./BuyButton";
 
 function ShopCart() {
   const shopCart = ShopCartLocalStorage();
+  const length = shopCart.length;
 
   return (
     <div className="p-4 row">
-      <Title />
+      <Title length={length} />
       {shopCart.length > 0 ? (
         <>
           <div className="col-lg-9 col-ms-12 mb-2">
             <Table shopCart={shopCart} />
           </div>
           <div className="col-lg-3 col-sm-12">
-            <BuyButton />
+            <BuyButton products={shopCart} />
           </div>
         </>
       ) : (
