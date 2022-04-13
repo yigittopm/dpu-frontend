@@ -23,3 +23,10 @@ export const ShopCartLocalStorage = () => {
     ? JSON.parse(localStorage.getItem("shopCart"))
     : shopCart;
 };
+
+export const AddressesLocalStorage = () => {
+  const { addresses } = useSelector((state) => state.user);
+  return localStorage.getItem("addresses")
+    ? JSON.parse(localStorage.getItem("addresses"))
+    : addresses;
+};

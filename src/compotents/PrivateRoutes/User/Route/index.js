@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Profile from "../Profile";
 import ShopCart from "../../../Pages/ShopCart";
+import Orders from "../../../Pages/Orders";
 import NotFound from "../../../Pages/NotFound";
 
 function UserRoute() {
@@ -10,7 +11,8 @@ function UserRoute() {
     <>
       <Switch>
         <Route exact path="/profile/edit" component={Profile} />
-        <Route exact path="/profile/shop-cart" component={ShopCart} />
+        <Route path="/profile/shop-cart" component={ShopCart} />
+        <Route path="/profile/orders" component={Orders} />
         <Route path="*" component={NotFound} />
       </Switch>
     </>

@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import { ShopCartLocalStorage } from "../../../LocalStorage";
 
 import Table from "./Table";
 import Title from "./Title";
 import BuyButton from "./BuyButton";
+import SelectAddress from "./SelectAddress";
 
 function ShopCart() {
   const shopCart = ShopCartLocalStorage();
@@ -19,7 +20,18 @@ function ShopCart() {
             <Table shopCart={shopCart} />
           </div>
           <div className="col-lg-3 col-sm-12">
-            <BuyButton products={shopCart} />
+            <Switch>
+              <Route
+                exact
+                path="/profile/shop-cart/address"
+                children={<SelectAddress products={shopCart} />}
+              />
+              <Route
+                exact
+                path="/profile/shop-cart"
+                children={<BuyButton products={shopCart} />}
+              />
+            </Switch>
           </div>
         </>
       ) : (

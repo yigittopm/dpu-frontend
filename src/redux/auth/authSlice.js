@@ -79,6 +79,7 @@ export const AuthSlice = createSlice({
       localStorage.removeItem("message");
       localStorage.removeItem("currentProduct");
       localStorage.removeItem("shopCart");
+      localStorage.removeItem("addresses");
     },
   },
 });

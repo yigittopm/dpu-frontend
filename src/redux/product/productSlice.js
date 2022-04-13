@@ -64,7 +64,13 @@ export const ProductSlice = createSlice({
         localStorage.setItem("shopCart", JSON.stringify(state.shopCart));
       }
     },
-    successRemoveFromShopCart: (state, action) => {},
+    successRemoveFromShopCart: (state, action) => {
+      const id = action.payload;
+      const newShopCart = current(state.shopCart).filter(
+        (item) => item.productDetail._id !== id
+      );
+      localStorage.setItem("shopCart", JSON.stringify(newShopCart));
+    },
     failed: (state, action) => {},
   },
 });

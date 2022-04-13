@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import ProductCarousel from "./ProductCarousel";
+import { AuthLocalStorage } from "../../../LocalStorage";
 
 import { Card, Col, Row, Button, ButtonGroup } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
 import { addProductToShopCart } from "../../../redux/product/productSlice";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Product({ productDetail }) {
+  const { isAuth } = AuthLocalStorage();
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const data = parseInt(productDetail.price.replace(".", ","));
 
   const discount = (data * 110) / 100;
@@ -127,8 +129,12 @@ function Product({ productDetail }) {
               </Button>
               <Button
                 onClick={() => {
-                  createToasy();
-                  dispatch(addProductToShopCart({ productDetail, count }));
+                  if (isAuth) {
+                    createToasy();
+                    dispatch(addProductToShopCart({ productDetail, count }));
+                  } else {
+                    history.push("/login");
+                  }
                 }}
                 className="btn btn-warning w-100 col-lg-6"
               >

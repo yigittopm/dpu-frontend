@@ -11,20 +11,39 @@ export const UserSlice = createSlice({
     newAddress: "",
     orders: [],
     newOrder: {},
-    status: false,
+    success: false,
     message: "",
   },
   reducers: {
     successGetAddress: (state, action) => {
+      localStorage.setItem(
+        "addresses",
+        JSON.stringify(action.payload.data.addresses)
+      );
       return {
         ...state,
         addresses: action.payload.data.addresses,
-        status: true,
+        success: true,
+        message: "Success",
+      };
+    },
+    successGetAllOrders: (state, action) => {
+      console.log(action.payload.data);
+      return {
+        ...state,
+        orders: action.payload.data,
+        success: true,
         message: "Success",
       };
     },
     successCreateOrder: (state, action) => {
-      console.log(action.payload);
+      return {
+        ...state,
+        newOrder: action.payload,
+        orders: [...state.orders, action.payload],
+        success: true,
+        message: "Success",
+      };
     },
     failed: (state, action) => {
       return {
@@ -36,8 +55,12 @@ export const UserSlice = createSlice({
   },
 });
 
-export const { successGetAddress, successCreateOrder, failed } =
-  UserSlice.actions;
+export const {
+  successGetAddress,
+  successGetAllOrders,
+  successCreateOrder,
+  failed,
+} = UserSlice.actions;
 
 export const getAddresses = (data) => {
   return async (dispatch) => {
@@ -51,6 +74,26 @@ export const getAddresses = (data) => {
             dispatch(successGetAddress(res.data));
           } else {
             dispatch(failed(res.data));
+          }
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const getOrders = (data) => {
+  return async (dispatch) => {
+    try {
+      await axios
+        .get(`${DEV_BASE}/orders`, {
+          headers: { Authorization: `Bearer ${data}` },
+        })
+        .then((res) => {
+          if (res.data.success) {
+            dispatch(successGetAllOrders(res.data));
+          } else {
+            failed(res.data);
           }
         });
     } catch (e) {
