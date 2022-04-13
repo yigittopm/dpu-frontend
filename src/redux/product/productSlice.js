@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../../base";
 
@@ -52,9 +52,17 @@ export const ProductSlice = createSlice({
     },
     successAddShopCart: (state, action) => {
       const { productDetail, count } = action.payload;
+      const isExists = current(state.shopCart).findIndex(
+        (e) => e.productDetail._id === productDetail._id
+      );
 
-      state.shopCart.push({ productDetail, count });
-      localStorage.setItem("shopCart", JSON.stringify(state.shopCart));
+      if (isExists > -1) {
+        state.shopCart[isExists].count += count;
+        localStorage.setItem("shopCart", JSON.stringify(state.shopCart));
+      } else {
+        state.shopCart.push({ productDetail, count });
+        localStorage.setItem("shopCart", JSON.stringify(state.shopCart));
+      }
     },
     successRemoveFromShopCart: (state, action) => {},
     failed: (state, action) => {},

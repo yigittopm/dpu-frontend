@@ -1,9 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
+import { AuthLocalStorage } from "../../../LocalStorage";
+import { createOrder } from "../../../redux/user/userSlice";
 
 function BuyButton({ products }) {
+  const { accessToken } = AuthLocalStorage();
+  const dispatch = useDispatch();
+  //const { newOrder } = useSelector((state) => state.user);
+
   const sum = (arr) => {
     return arr.reduce((prev, curr) => prev + curr);
   };
@@ -40,9 +47,12 @@ function BuyButton({ products }) {
           <label>Ödenecek Tutar:</label>
           <b style={{ fontSize: "20px" }}>{totalPrice.toFixed(3)},00 ₺</b>
         </div>
-        <Link to="/" className="btn btn-primary w-100 text-light">
+        <button
+          onClick={() => dispatch(createOrder(products, accessToken))}
+          className="btn btn-primary w-100 text-light"
+        >
           Alışverişi Tamamla
-        </Link>
+        </button>
       </CardBody>
     </Card>
   );

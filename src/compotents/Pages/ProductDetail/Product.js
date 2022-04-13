@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 
 import { addProductToShopCart } from "../../../redux/product/productSlice";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Product({ productDetail }) {
   const [count, setCount] = useState(1);
@@ -23,6 +24,13 @@ function Product({ productDetail }) {
   const setCountValue = (value) => {
     if (value < 0 && count === 1) return setCount(1);
     setCount(count + value);
+  };
+
+  const createToasy = () => {
+    toast.success("Added to cart", {
+      autoClose: "1sn",
+      position: "bottom-right",
+    });
   };
 
   return (
@@ -118,9 +126,10 @@ function Product({ productDetail }) {
                 -
               </Button>
               <Button
-                onClick={() =>
-                  dispatch(addProductToShopCart({ productDetail, count }))
-                }
+                onClick={() => {
+                  createToasy();
+                  dispatch(addProductToShopCart({ productDetail, count }));
+                }}
                 className="btn btn-warning w-100 col-lg-6"
               >
                 <span>Sepete Ekle ({count})</span>

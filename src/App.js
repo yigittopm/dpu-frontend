@@ -14,7 +14,13 @@ function App() {
       <SidebarProvider>
         <Topbar />
         <Content />
-        <ToastContainer position={toast.POSITION.TOP_RIGHT} autoClose={3000} />
+        <ToastContainer
+          position={toast.POSITION.TOP_RIGHT}
+          closeOnClick={true}
+          closeButton={false}
+          theme="dark"
+          autoClose={2000}
+        />
       </SidebarProvider>
     </div>
   );

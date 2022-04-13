@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AuthLocalStorage } from "../../../../LocalStorage";
 import { Row, Col } from "reactstrap";
+
+import { getAddresses } from "../../../../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 function AddPage() {
+  const { accessToken } = AuthLocalStorage();
+  const dispatch = useDispatch();
+  const { addresses } = useSelector((state) => state.user);
+  const [address, setAddress] = useState(addresses);
   const { email, username, role, id, image } = AuthLocalStorage();
+
+  useEffect(() => {
+    dispatch(getAddresses(accessToken));
+  }, [dispatch, accessToken]);
+
+  useEffect(() => {
+    setAddress(addresses);
+  }, [dispatch, addresses]);
+
+  console.log(address);
+
   return (
     <div className="text-center mt-4">
       <Row>
