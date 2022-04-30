@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ContactMe() {
+  const [email, setEmail] = useState("");
+
+  console.log(email);
+
   return (
     <section className="">
       <form action="">
@@ -17,6 +21,7 @@ function ContactMe() {
                 type="email"
                 id="form5Example21"
                 className="form-control"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <label className="form-label" htmlFor="form5Example21">
                 Email: yigittopm@hotmail.com
