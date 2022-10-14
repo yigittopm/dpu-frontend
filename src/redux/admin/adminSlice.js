@@ -22,6 +22,15 @@ export const AdminSlice = createSlice({
         success: success,
       };
     },
+    successUsers: (state, action) => {
+      const { data, success } = action.payload;
+      return {
+        ...state,
+        users: data,
+        success: success,
+      };
+    },
+
     failed: (state, action) => {
       return {
         ...state,
@@ -32,7 +41,27 @@ export const AdminSlice = createSlice({
   },
 });
 
-export const { successProducts, failed } = AdminSlice.actions;
+export const { successProducts, successUsers, failed } = AdminSlice.actions;
+
+export const getAllUsers = (data) => {
+  return async (dispatch) => {
+    try {
+      await axios.get(`${DEV_BASE}/users`, {
+        headers: {refreshToken: data}
+      }).then((res) => {
+        console.log(res)
+        if (res.data.success) {
+          console.log(res.data)
+          dispatch(successUsers(res.data));
+        } else {
+          dispatch(failed());
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
 
 export const getAllProducts = (data) => {
   return async (dispatch) => {

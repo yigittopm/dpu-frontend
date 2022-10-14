@@ -4,6 +4,7 @@ import { Row, Col } from "reactstrap";
 
 import { getAddresses } from "../../../../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 
 function AddPage() {
   const { accessToken } = AuthLocalStorage();
@@ -28,12 +29,26 @@ function AddPage() {
         <Col className="col-md-6">
           <img alt="profil" src={image} width={250} />
         </Col>
-        <Col className="col-md-6 text-center mt-3 p-3">
+        <Col className="col-md-6 text-start mt-3 p-3">
+          <h4>Role: {role}</h4>
           <h3>@{username}</h3>
           <code>{email}</code>
-          <h4>Role: {role}</h4>
           <h5>🔑 : {id}</h5>
+          <Row>
+            <Col >
+              <Link to="/profile/orders" className="btn btn-primary m-2">
+                Siparişlerim
+              </Link>
+
+
+
+
+            </Col>
+
+          </Row>
+
         </Col>
+
       </Row>
     </div>
   );

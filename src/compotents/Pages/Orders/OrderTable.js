@@ -1,7 +1,14 @@
 import React from "react";
 
-function OrderTable({ orders }) {
+function OrderTable({ orders=[] }) {
   const isExists = orders.length > 0;
+
+  const singleProductSum = (arr=[]) => {
+    console.log(arr)
+    //return arr.productDetail.reduce((acc, obj) => acc + +obj.productDetail.price, 0)
+    return 0
+  }
+
   return (
     <>
       {isExists ? (
@@ -14,22 +21,22 @@ function OrderTable({ orders }) {
                 <th scope="col">Address</th>
                 <th scope="col">Total</th>
                 <th scope="col">Unit</th>
+                <th scope="col">More</th>
               </tr>
             </thead>
             <tbody>
-              {orders.map(({ address, products }, index) => (
-                <tr style={{ maxHeight: "100px" }} key={index}>
-                  <td>{index + 1}</td>
-                  <td>
-                    {/* {products.map((item, index) => (
-                      <small key={index}>{item.productDetail.title}</small>
-                    ))} */}
-                  </td>
-                  <td>{address}</td>
-                  <td>1</td>
-                  <td>1</td>
-                </tr>
-              ))}
+              {orders.map(({address, products}, index) => {
+                return (
+                    <tr style={{maxHeight: "100px"}} key={index}>
+                      <td>{index + 1}</td>
+                      <td>{products.length}
+                      </td>
+                      <td>2</td>
+                      <td>{address}</td>
+                      <td>1</td>
+                    </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>

@@ -58,3 +58,8 @@
 .admin-btn-link:hover {
     color: rgb(210, 210, 210) !important;
 }
+
+
+.blur-img {
+    filter: blur(4px);
+}
