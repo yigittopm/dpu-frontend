@@ -33,9 +33,4 @@ function AdminRoute() {
     </div>
   );
 }
-{/*<div className="card-group button-group justify-content-around p-3">
-        <InfoCount color={0} name="Products" to="/admin" />
-        <InfoCount color={1} name="Users" to="/admin/users" />
-        <InfoCount color={2} name="Orders" to="/admin/orders" />
-      </div>*/}
 export default AdminRoute;

@@ -12,7 +12,7 @@ function Users() {
 
       useEffect(() => {
             dispatch(getAllUsers(refreshToken))
-      }, [])
+      }, [dispatch()])
 
 
   return (
