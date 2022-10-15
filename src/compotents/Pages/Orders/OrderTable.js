@@ -3,11 +3,6 @@ import React from "react";
 function OrderTable({ orders=[] }) {
   const isExists = orders.length > 0;
 
-  const singleProductSum = (arr=[]) => {
-    console.log(arr)
-    //return arr.productDetail.reduce((acc, obj) => acc + +obj.productDetail.price, 0)
-    return 0
-  }
 
   return (
     <>

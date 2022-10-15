@@ -1,4 +1,4 @@
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Card, Col} from "react-bootstrap";
 import React from "react";
 
 function UserCard ({data}) {

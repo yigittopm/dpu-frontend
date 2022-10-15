@@ -1,11 +1,10 @@
 import React from "react";
-import {Switch, Route, Link} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 
 import AllProduts from "../GetAllProducts";
 import AllUsers from "../GetAllUsers";
 import AllOrders from "../GetAllOrders";
 import NotFound from "../../../Pages/NotFound";
-import InfoCount from "../InfoCount";
 
 function AdminRoute() {
   return (

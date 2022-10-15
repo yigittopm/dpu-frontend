@@ -1,7 +1,4 @@
-import React, {useEffect, useState} from "react";
-import {Card, Col, Row} from "react-bootstrap";
-import ReactStars from "react-rating-stars-component";
-import {Link} from "react-router-dom";
+import React, {useEffect} from "react";
 import UserCard from "./UserCard";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllUsers} from "../../../../redux/admin/adminSlice";

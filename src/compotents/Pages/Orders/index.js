@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { getOrders } from "../../../redux/user/userSlice";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getOrders} from "../../../redux/user/userSlice";
 import LoadingPage from "../Loading";
 import OrderTable from "./OrderTable";
 
-import { AuthLocalStorage } from "../../../LocalStorage";
+import {AuthLocalStorage} from "../../../LocalStorage";
+
 function Orders() {
   const { accessToken } = AuthLocalStorage();
   const dispatch = useDispatch();
