@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthLocalStorage } from "../../LocalStorage";
 import { ShopCartLocalStorage } from "../../LocalStorage";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { logout } from "../../redux/auth/authSlice";
+import {changeIsSearch} from "../../redux/product/productSlice";
 
 function Right() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const { isSearch } = useSelector(state => state.product);
   const { isAuth, isAdmin, refreshToken, image } = AuthLocalStorage();
   const shopCart = ShopCartLocalStorage();
 
@@ -57,12 +59,17 @@ function Right() {
             />
           </Link>
 
-          <button className=" btn btn-dark text-light d-md-none" type="button">
-            <i
-              style={{ fontSize: "1.3rem" }}
-              className="fa-solid fa-magnifying-glass"
-            ></i>
-          </button>
+          {
+            !isSearch &&
+            <button className=" btn btn-dark text-light d-md-none" type="button"
+                    onClick={() => dispatch(changeIsSearch(!isSearch))}>
+              <i
+                  style={{ fontSize: "1.3rem" }}
+                  className="fa-solid fa-magnifying-glass"
+              ></i>
+            </button>
+          }
+
         </>
       ) : (
         <div className="">

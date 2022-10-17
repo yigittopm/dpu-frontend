@@ -7,6 +7,8 @@ const DEV_BASE = `${BASE_URL}/products`;
 export const ProductSlice = createSlice({
   name: "product",
   initialState: {
+    isSearch: false,
+    search: "",
     products: [],
     shopCart: [],
     currentProduct: {},
@@ -14,6 +16,18 @@ export const ProductSlice = createSlice({
     message: "",
   },
   reducers: {
+    successIsSearch: (state,action) => {
+      return {
+        ...state,
+        isSearch: action.payload
+      }
+    },
+    successSearch: (state,action) => {
+      return {
+        ...state,
+        search: action.payload
+      }
+    },
     successProducts: (state, action) => {
       const data = action.payload;
       const products = data.data;
@@ -76,6 +90,8 @@ export const ProductSlice = createSlice({
 });
 
 export const {
+  successIsSearch,
+  successSearch,
   successProducts,
   successProductsByCategory,
   successCurrentProduct,
@@ -83,6 +99,26 @@ export const {
   successRemoveFromShopCart,
   failed,
 } = ProductSlice.actions;
+
+export const changeIsSearch = (data) => {
+  return async (dispatch) => {
+    try {
+      dispatch(successIsSearch(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const changeSearch = (data) => {
+  return async (dispatch) => {
+    try {
+      dispatch(successSearch(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 export const getAllProducts = (data) => {
   return async (dispatch) => {

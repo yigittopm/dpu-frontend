@@ -69,6 +69,7 @@ export const AuthSlice = createSlice({
       };
     },
     saveToLocalStorage: (state) => {
+      console.log(state.user)
       localStorage.setItem("userData", JSON.stringify(state.user));
       localStorage.setItem("success", JSON.stringify(state.success));
       localStorage.setItem("message", JSON.stringify(state.message));

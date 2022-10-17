@@ -9,8 +9,9 @@ import { useDispatch } from "react-redux";
 import { addProductToShopCart } from "../../../redux/product/productSlice";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import Comment from "./Comment";
+import Comment from "./Comments";
 import Similar from "./Similar";
+import Features from "./Features";
 
 function Product({ productDetail }) {
   const { isAuth } = AuthLocalStorage();
@@ -159,6 +160,8 @@ function Product({ productDetail }) {
             </Link>
           </div>
         </Col>
+
+
 
         <Col
             md={12}

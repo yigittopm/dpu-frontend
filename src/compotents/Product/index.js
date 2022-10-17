@@ -7,10 +7,10 @@ function ProductSchema({ product, size="" }) {
   const discount = (parseFloat(product.price) * 110) / 100;
   const result = discount.toFixed(3);
   return (
-    <Card className="p-2 border-light" key={product._id}>
+    <Card className="p-2 border-light" key={product._id} >{/*style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}}*/}
       <Col>
         <img
-          src={product.images[0]}
+          src={product?.images[0]}
           className="card-img img-thumbnail justify-content-center"
           width={50}
           height={50}

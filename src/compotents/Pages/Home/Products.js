@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Products() {
   const dispatch = useDispatch();
-  const { success, products } = useSelector((state) => state.product);
+  const { success, products, search } = useSelector((state) => state.product);
 
   const [isLoading, setIsLoading] = useState(success);
   const [productsData, setProductsData] = useState(products);
@@ -25,7 +25,7 @@ function Products() {
       {isLoading ? (
         <>
           <div className="row m-3 row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-            {productsData.map((product) => (
+            {productsData.filter(item => item.title.toLocaleUpperCase().includes(search)).map((product) => (
               <Product key={product._id} product={product} />
             ))}
           </div>
