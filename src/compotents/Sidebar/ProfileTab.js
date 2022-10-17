@@ -12,11 +12,11 @@ function ProfileTab() {
       <div className="d-flex justify-content-between align-items-center">
         <img
           alt="pp"
-          height="50px"
-          style={{ borderRadius: "50%", marginRight: "10px" }}
+          height="40px"
+          style={{ borderRadius: "50%" }}
           src={require("../../assets/avatars/2.png")}
         />
-        <p>Mert Yiğittop</p>
+          <p>Mert Yiğittop</p>
       </div>
       <div>
         <Link

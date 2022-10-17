@@ -1,22 +1,21 @@
 import React from "react";
 import SearchBar from "./SearchBar";
-import Left from "./Left";
 import Right from "./Right";
 import Logo from "./Logo";
-import Sidebar from "../Sidebar";
+import Left from "./Left";
+import {useSelector} from "react-redux";
 
 function TopBar() {
+    const {isSearch} = useSelector(state => state.product)
   return (
-    <nav className="container-fuild">
+    <nav className="container-fuild fixed-top">
       <div className="justify-content-around navbar navbar-expand-lg navbar-dark bg-dark text-light">
-        <Left />
-        <Logo />
+          <Left/>
+          <Logo />
         <SearchBar />
         <Right />
       </div>
-      <div>
-        <Sidebar />
-      </div>
+        {/*<Categories/>*/}
     </nav>
   );
 }

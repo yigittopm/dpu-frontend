@@ -10,7 +10,7 @@ function Footer() {
   return (
     <footer
       className="bg-dark text-center text-white"
-      style={{ bottom: "0" }}
+      style={{ bottom: "0", zIndex:"-99" }}
     >
       <div className="container p-4">
         <SocialMedia />
