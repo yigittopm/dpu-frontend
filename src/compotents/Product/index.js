@@ -3,7 +3,7 @@ import ReactStars from "react-rating-stars-component";
 import { Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function ProductSchema({ product }) {
+function ProductSchema({ product, size="" }) {
   const discount = (parseFloat(product.price) * 110) / 100;
   const result = discount.toFixed(3);
   return (

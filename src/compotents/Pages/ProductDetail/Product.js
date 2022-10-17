@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { addProductToShopCart } from "../../../redux/product/productSlice";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import Comment from "./Comment";
+import Similar from "./Similar";
 
 function Product({ productDetail }) {
   const { isAuth } = AuthLocalStorage();
@@ -156,6 +158,20 @@ function Product({ productDetail }) {
               </button>
             </Link>
           </div>
+        </Col>
+
+        <Col
+            md={12}
+            className="align-items-center justify-content-center bg-light p-3 mt-3"
+        >
+          <Similar/>
+        </Col>
+
+        <Col
+            md={12}
+            className="align-items-center justify-content-center bg-light p-3"
+        >
+          <Comment/>
         </Col>
       </Row>
     </Card>
