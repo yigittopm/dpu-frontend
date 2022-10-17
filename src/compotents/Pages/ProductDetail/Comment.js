@@ -1,9 +1,8 @@
 import React from "react";
 import {Card, Col, Row} from "react-bootstrap";
-import {CardTitle} from "reactstrap";
 import ReactStars from "react-rating-stars-component";
 
-function Comment({ productDetail }) {
+function Comment() {
     return (
         <Card className="mb-3 p-2 border-light rounded" style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}}>
             <Card.Body>

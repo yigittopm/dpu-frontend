@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {Card} from "reactstrap";
 import Product from "../../Product";
 import {getProductsByCategories} from "../../../redux/product/productSlice";
 import {useDispatch, useSelector} from "react-redux";

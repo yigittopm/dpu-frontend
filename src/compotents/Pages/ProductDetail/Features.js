@@ -1,9 +1,6 @@
 import React from "react";
-import {Card, Col, Row} from "react-bootstrap";
-import {CardTitle, Table} from "reactstrap";
-import ReactStars from "react-rating-stars-component";
 
-function Features({ productDetail }) {
+function Features() {
     return (
         <div>
             <h4>Ürün Özellikleri</h4>

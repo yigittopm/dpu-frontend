@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ReactStars from "react-rating-stars-component";
 import ProductCarousel from "./ProductCarousel";
-import { AuthLocalStorage } from "../../../LocalStorage";
+import {AuthLocalStorage} from "../../../LocalStorage";
 
-import { Card, Col, Row, Button, ButtonGroup } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import {Button, ButtonGroup, Card, Col, Row} from "react-bootstrap";
+import {useDispatch} from "react-redux";
 
-import { addProductToShopCart } from "../../../redux/product/productSlice";
-import { Link, useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
+import {addProductToShopCart} from "../../../redux/product/productSlice";
+import {Link, useHistory} from "react-router-dom";
+import {toast} from "react-toastify";
 import Comment from "./Comments";
 import Similar from "./Similar";
-import Features from "./Features";
 
 function Product({ productDetail }) {
   const { isAuth } = AuthLocalStorage();

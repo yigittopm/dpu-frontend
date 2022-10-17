@@ -1,9 +1,8 @@
-import React, {useState} from "react";
-import { Link, useLocation } from "react-router-dom";
-import { AuthLocalStorage } from "../../LocalStorage";
-import { ShopCartLocalStorage } from "../../LocalStorage";
+import React from "react";
+import {Link, useLocation} from "react-router-dom";
+import {AuthLocalStorage, ShopCartLocalStorage} from "../../LocalStorage";
 import {useDispatch, useSelector} from "react-redux";
-import { logout } from "../../redux/auth/authSlice";
+import {logout} from "../../redux/auth/authSlice";
 import {changeIsSearch} from "../../redux/product/productSlice";
 
 function Right() {
