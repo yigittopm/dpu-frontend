@@ -17,6 +17,7 @@ export const AuthSlice = createSlice({
       image: "",
       accessToken: null,
       refreshToken: null,
+      isActive: false,
     },
     success: false,
     message: "",
@@ -38,6 +39,7 @@ export const AuthSlice = createSlice({
           image: data.user.image,
           accessToken: data.accessToken,
           refreshToken: data.refreshToken,
+          isActive: data.user.isActive === "active",
         },
         success: userInfo.success,
         message: userInfo.message ? userInfo.message : "Success",
@@ -63,13 +65,14 @@ export const AuthSlice = createSlice({
           image: "",
           accessToken: null,
           refreshToken: null,
+          isActive: false,
         },
         success: userInfo.success,
         message: userInfo ? userInfo.message : "Successfully logout",
       };
     },
     saveToLocalStorage: (state) => {
-      console.log(state.user)
+      console.log(state.user);
       localStorage.setItem("userData", JSON.stringify(state.user));
       localStorage.setItem("success", JSON.stringify(state.success));
       localStorage.setItem("message", JSON.stringify(state.message));

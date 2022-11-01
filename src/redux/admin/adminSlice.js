@@ -31,6 +31,15 @@ export const AdminSlice = createSlice({
       };
     },
 
+    successUpdatedUser: (state, action) => {
+      const { data, success } = action.payload;
+      return {
+        ...state,
+        users: data,
+        success: success,
+      };
+    },
+
     failed: (state, action) => {
       return {
         ...state,
@@ -46,17 +55,39 @@ export const { successProducts, successUsers, failed } = AdminSlice.actions;
 export const getAllUsers = (data) => {
   return async (dispatch) => {
     try {
-      await axios.get(`${DEV_BASE}/users`, {
-        headers: {refreshToken: data}
-      }).then((res) => {
-        console.log(res)
-        if (res.data.success) {
-          console.log(res.data)
-          dispatch(successUsers(res.data));
-        } else {
-          dispatch(failed());
-        }
-      });
+      await axios
+        .get(`${DEV_BASE}/users`, {
+          headers: { refreshToken: data },
+        })
+        .then((res) => {
+          if (res.data.success) {
+            dispatch(successUsers(res.data));
+          } else {
+            dispatch(failed());
+          }
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const updateUserById = (data) => {
+  return async (dispatch) => {
+    try {
+      await axios
+        .put(
+          `${DEV_BASE}/users/${data.id}`,
+          { isActive: data.isActive },
+          { headers: { refreshToken: data.refreshToken } }
+        )
+        .then((res) => {
+          if (res.data.success) {
+            dispatch(successUsers(res.data));
+          } else {
+            dispatch(failed());
+          }
+        });
     } catch (e) {
       console.log(e);
     }

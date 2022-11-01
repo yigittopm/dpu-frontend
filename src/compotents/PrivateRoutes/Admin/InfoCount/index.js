@@ -16,7 +16,7 @@ function InfoCount({ name, to, color = 0 }) {
         color: "white",
         borderRadius: "15px",
       }}
-      className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 p-3 border-0 m-3"
+      className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 p-3 border-0 m-1"
     >
       <div>
         <h1>{name}</h1>
