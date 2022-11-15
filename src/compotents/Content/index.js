@@ -11,15 +11,13 @@ import UserRoute from "../PrivateRoutes/User/Route";
 import AdminRoute from "../PrivateRoutes/Admin/Route";
 import NotFound from "../Pages/NotFound";
 import Footer from "../Footer";
-import Suspended from "../Pages/Suspended";
 import { Col, Row } from "reactstrap";
 import Sidebar from "../Sidebar";
 import { useSidebar } from "../../context/Sidebar";
-import { useSelector } from "react-redux";
 
 function Content() {
   const { isOpen } = useSidebar();
-  const { isActive } = useSelector((state) => state.auth.user);
+
   return (
     <div className="content">
       <Row>
@@ -40,12 +38,7 @@ function Content() {
               component={ProductDetail}
             />
             <Route exact path="/categories/:category" component={Category} />
-            {isActive ? (
-              <PrivateUserRoute path="/profile" component={UserRoute} />
-            ) : (
-              <Suspended />
-            )}
-
+            <PrivateUserRoute path="/profile" component={UserRoute} />
             <PrivateAdminRoute path="/admin" component={AdminRoute} />
             <Route path="*" component={NotFound} />
           </Switch>
