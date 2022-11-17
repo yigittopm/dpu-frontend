@@ -1,19 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AddressesLocalStorage, AuthLocalStorage } from "../../../LocalStorage";
+import React, {useState} from "react";
+import {AddressesLocalStorage} from "../../../LocalStorage";
 
-import { Card, CardBody } from "reactstrap";
-import { createOrder } from "../../../redux/user/userSlice";
-import { useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
+import {Card, CardBody} from "reactstrap";
+import {Link} from "react-router-dom";
 
 function SelectAddress({ products }) {
-  const { accessToken } = AuthLocalStorage();
   const addresses = AddressesLocalStorage();
   const [address, setAddress] = useState(addresses[0]);
-  const history = useHistory();
 
-  const dispatch = useDispatch();
   return (
     <Card className="p-2 bg-light text-dark border-0">
       <CardBody>
@@ -32,17 +26,12 @@ function SelectAddress({ products }) {
           </select>
         </div>
 
-        <button
-          onClick={() => {
-            dispatch(createOrder({ products, address }, accessToken));
-            toast.success("Siparişiniz alındı.");
-            history.push("/profile/orders");
-            localStorage.removeItem("shopCart");
-          }}
-          className="btn btn-warning w-100 text-dark"
+        <Link
+          className={"btn btn-warning w-100 text-dark"}
+          to={"/profile/credit-card"}
         >
-          Alışverişi Tamamla
-        </button>
+          Kart Bilgilerini Gir
+        </Link>
       </CardBody>
     </Card>
   );

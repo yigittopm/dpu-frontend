@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { BASE_URL } from "../../base";
+import {BASE_URL} from "../../base";
 
 const DEV_BASE = `${BASE_URL}/user`;
 
@@ -112,6 +112,7 @@ export const createOrder = (data, token) => {
         .then((res) => {
           if (res.data.success) {
             dispatch(successCreateOrder(res.data));
+            localStorage.removeItem("shopCart");
           } else {
             dispatch(failed(res.data));
           }

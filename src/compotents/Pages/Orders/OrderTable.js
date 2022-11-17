@@ -1,8 +1,7 @@
 import React from "react";
 
-function OrderTable({ orders=[] }) {
+function OrderTable({ orders = [] }) {
   const isExists = orders.length > 0;
-
 
   return (
     <>
@@ -20,17 +19,16 @@ function OrderTable({ orders=[] }) {
               </tr>
             </thead>
             <tbody>
-              {orders.map(({address, products}, index) => {
+              {orders.map(({ address, products }, index) => {
                 return (
-                    <tr style={{maxHeight: "100px"}} key={index}>
-                      <td>{index + 1}</td>
-                      <td>{products.length}
-                      </td>
-                      <td>2</td>
-                      <td>{address}</td>
-                      <td>1</td>
-                    </tr>
-                )
+                  <tr style={{ maxHeight: "100px" }} key={index}>
+                    <td>{index + 1}</td>
+                    <td>{products?.length || 0}</td>
+                    <td>2</td>
+                    <td>{address}</td>
+                    <td>1</td>
+                  </tr>
+                );
               })}
             </tbody>
           </table>

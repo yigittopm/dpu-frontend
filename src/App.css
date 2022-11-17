@@ -63,3 +63,22 @@
 .blur-img {
     filter: blur(4px);
 }
+
+#credit-card {
+    margin: 30px 10px;
+    padding: 55px;
+    height: 300px;
+    width: inherit;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #1f005c, #5b0060, #870160, #ac255e, #ca485c, #e16b5c, #f39060, #ffb56b);
+    color: white;
+    font-size: 28px;
+
+}
+
+#credit-card-no {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
