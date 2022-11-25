@@ -1,28 +1,33 @@
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
-import {AddressesLocalStorage, AuthLocalStorage} from "../../../LocalStorage";
-import Cards from "react-credit-cards"
-import 'react-credit-cards/es/styles-compiled.css'
-import {Card, CardBody, Col, Row} from "reactstrap";
-import {createOrder} from "../../../redux/user/userSlice";
-import {useHistory} from "react-router-dom";
-import {toast} from "react-toastify";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  AddressesLocalStorage,
+  AuthLocalStorage,
+  ShopCartLocalStorage,
+} from "../../../LocalStorage";
+import Cards from "react-credit-cards";
+import "react-credit-cards/es/styles-compiled.css";
+import { Card, CardBody, Col, Row } from "reactstrap";
+import { createOrder } from "../../../redux/user/userSlice";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function CreditCardInfo({ products }) {
   const dispatch = useDispatch();
+  const shopCart = ShopCartLocalStorage();
   const { accessToken } = AuthLocalStorage();
   const addresses = AddressesLocalStorage();
   const [address, setAddress] = useState(addresses[0]);
   const history = useHistory();
   const [creditCard, setCreditCard] = useState({
-    number: '',
-     name: '',
-     expiry: '',
-     cvc: '',
-     issuer: '',
-     focused: '',
-     formData: null
-  })
+    number: "",
+    name: "",
+    expiry: "",
+    cvc: "",
+    issuer: "",
+    focused: "",
+    formData: null,
+  });
 
   return (
     <Row className="w-100 d-flex justify-content-center align-items-center">
@@ -32,18 +37,17 @@ function CreditCardInfo({ products }) {
             <CardBody>
               <h4>Ödeme Bilgilerinizi Tamamlayınız</h4>
 
-              <div key='Payment' className={"mt-4"}>
-                <div className='App-payment'>
+              <div key="Payment" className={"mt-4"}>
+                <div className="App-payment">
                   <Cards
-                      number={creditCard.number}
-                      name={creditCard.name}
-                      expiry={creditCard.expiry}
-                      cvc={creditCard.cvc}
-                      focused={creditCard.focused}
+                    number={creditCard.number}
+                    name={creditCard.name}
+                    expiry={creditCard.expiry}
+                    cvc={creditCard.cvc}
+                    focused={creditCard.focused}
                   />
                 </div>
               </div>
-
 
               <form className="mt-4 mb-4">
                 <div class="form-row">
@@ -58,9 +62,9 @@ function CreditCardInfo({ products }) {
                           setCreditCard((state) => {
                             return {
                               ...state,
-                              number: e.target.value
-                            }
-                          })
+                              number: e.target.value,
+                            };
+                          });
                         }}
                       />
                     </div>
@@ -75,9 +79,9 @@ function CreditCardInfo({ products }) {
                           setCreditCard((state) => {
                             return {
                               ...state,
-                              name: e.target.value
-                            }
-                          })
+                              name: e.target.value,
+                            };
+                          });
                         }}
                       />
                     </div>
@@ -90,9 +94,9 @@ function CreditCardInfo({ products }) {
                           setCreditCard((state) => {
                             return {
                               ...state,
-                              expiry: e.target.value
-                            }
-                          })
+                              expiry: e.target.value,
+                            };
+                          });
                         }}
                       />
                     </div>
@@ -102,7 +106,9 @@ function CreditCardInfo({ products }) {
 
               <button
                 onClick={() => {
-                  dispatch(createOrder({ products, address }, accessToken));
+                  dispatch(
+                    createOrder({ products: shopCart, address }, accessToken)
+                  );
                   toast.success("Siparişiniz alındı.");
                   history.push("/profile/orders");
                 }}

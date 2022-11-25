@@ -1,6 +1,6 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {BASE_URL} from "../../base";
+import { BASE_URL } from "../../base";
 
 const DEV_BASE = `${BASE_URL}/user`;
 
@@ -28,7 +28,6 @@ export const UserSlice = createSlice({
       };
     },
     successGetAllOrders: (state, action) => {
-      console.log(action.payload.data);
       return {
         ...state,
         orders: action.payload.data,
@@ -103,6 +102,7 @@ export const getOrders = (data) => {
 };
 
 export const createOrder = (data, token) => {
+  console.log(data);
   return async (dispatch) => {
     try {
       await axios
