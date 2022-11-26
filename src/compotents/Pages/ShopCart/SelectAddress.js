@@ -1,12 +1,16 @@
-import React, {useState} from "react";
-import {AddressesLocalStorage} from "../../../LocalStorage";
+import React, { useEffect, useState } from "react";
+import { AddressesLocalStorage } from "../../../LocalStorage";
 
-import {Card, CardBody} from "reactstrap";
-import {Link} from "react-router-dom";
+import { Card, CardBody } from "reactstrap";
+import { Link } from "react-router-dom";
 
 function SelectAddress({ products }) {
   const addresses = AddressesLocalStorage();
   const [address, setAddress] = useState(addresses[0]);
+
+  useEffect(() => {
+    localStorage.setItem("selectedAddress", JSON.stringify(address));
+  }, [address]);
 
   return (
     <Card className="p-2 bg-light text-dark border-0">
@@ -25,7 +29,12 @@ function SelectAddress({ products }) {
             ))}
           </select>
         </div>
-
+        <Link
+          className={"btn btn-primary w-100 text-white mb-2"}
+          to={"/profile/addresses"}
+        >
+          Adres Ekle
+        </Link>
         <Link
           className={"btn btn-warning w-100 text-dark"}
           to={"/profile/credit-card"}

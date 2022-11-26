@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { BASE_URL } from "../../base";
 
 const DEV_BASE = `${BASE_URL}/user`;
@@ -23,6 +24,16 @@ export const UserSlice = createSlice({
       return {
         ...state,
         addresses: action.payload.data.addresses,
+        success: true,
+        message: "Success",
+      };
+    },
+    successCreateAddress: (state, action) => {
+      toast.success("Adres başarıyla oluşturuldu.");
+      return {
+        ...state,
+        newAddress: action.payload,
+        addresses: [...state.addresses, action.payload],
         success: true,
         message: "Success",
       };
@@ -56,6 +67,7 @@ export const UserSlice = createSlice({
 
 export const {
   successGetAddress,
+  successCreateAddress,
   successGetAllOrders,
   successCreateOrder,
   failed,
@@ -71,6 +83,31 @@ export const getAddresses = (data) => {
         .then((res) => {
           if (res.data.success) {
             dispatch(successGetAddress(res.data));
+          } else {
+            dispatch(failed(res.data));
+          }
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const createAddress = (add, token) => {
+  return async (dispatch) => {
+    try {
+      await axios
+        .post(
+          `${DEV_BASE}/address`,
+          { address: add },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => {
+          if (res.data.success) {
+            console.log(res.data);
+            dispatch(successCreateAddress(res.data.data));
           } else {
             dispatch(failed(res.data));
           }

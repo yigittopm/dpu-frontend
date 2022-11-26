@@ -13,6 +13,7 @@ function App() {
     <div className="container-fuild vh-100">
       <SidebarProvider>
         <Topbar />
+        <hr />
         <Content />
         <ToastContainer
           position={toast.POSITION.TOP_RIGHT}

@@ -16,8 +16,7 @@ function CreditCardInfo({ products }) {
   const dispatch = useDispatch();
   const shopCart = ShopCartLocalStorage();
   const { accessToken } = AuthLocalStorage();
-  const addresses = AddressesLocalStorage();
-  const [address, setAddress] = useState(addresses[0]);
+  const address = JSON.parse(localStorage.getItem("selectedAddress"));
   const history = useHistory();
   const [creditCard, setCreditCard] = useState({
     number: "",
