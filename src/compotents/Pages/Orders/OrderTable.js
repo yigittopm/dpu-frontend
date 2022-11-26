@@ -43,7 +43,7 @@ function OrderTable({ orders = [] }) {
 
                             index < 3 && (
                               <img
-                                alt="image"
+                                alt="image_default"
                                 style={{
                                   maxHeight: "30px",
                                   maxWidth: "auto",
