@@ -22,7 +22,7 @@ function Addresses() {
     setAllAddress(addresses);
     setIsLoading(success);
   }, [dispatch, addresses, success]);
-
+  console.log(allAddress);
   return (
     <>
       {isLoading ? (

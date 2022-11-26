@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { CardBody } from "reactstrap";
-import { createAddress, getAddresses } from "../../../redux/user/userSlice";
+import { createAddress } from "../../../redux/user/userSlice";
 
 function AddressTable({ addresses = [], accessToken = "" }) {
   const isExists = addresses.length > 0;
