@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  AddressesLocalStorage,
-  AuthLocalStorage,
-  ShopCartLocalStorage,
-} from "../../../LocalStorage";
-import Cards from "react-credit-cards";
-import "react-credit-cards/es/styles-compiled.css";
+import { AuthLocalStorage, ShopCartLocalStorage } from "../../../LocalStorage";
 import { Card, CardBody, Col, Row } from "reactstrap";
 import { createOrder } from "../../../redux/user/userSlice";
 import { useHistory } from "react-router-dom";
@@ -36,7 +30,7 @@ function CreditCardInfo({ products }) {
             <CardBody>
               <h4>Ödeme Bilgilerinizi Tamamlayınız</h4>
 
-              <div key="Payment" className={"mt-4"}>
+              {/* <div key="Payment" className={"mt-4"}>
                 <div className="App-payment">
                   <Cards
                     number={creditCard.number}
@@ -101,7 +95,7 @@ function CreditCardInfo({ products }) {
                     </div>
                   </Row>
                 </div>
-              </form>
+              </form> */}
 
               <button
                 onClick={() => {
