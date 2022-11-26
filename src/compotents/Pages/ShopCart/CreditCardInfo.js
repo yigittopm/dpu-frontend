@@ -12,15 +12,15 @@ function CreditCardInfo({ products }) {
   const { accessToken } = AuthLocalStorage();
   const address = JSON.parse(localStorage.getItem("selectedAddress"));
   const history = useHistory();
-  const [creditCard, setCreditCard] = useState({
-    number: "",
-    name: "",
-    expiry: "",
-    cvc: "",
-    issuer: "",
-    focused: "",
-    formData: null,
-  });
+  // const [creditCard, setCreditCard] = useState({
+  //   number: "",
+  //   name: "",
+  //   expiry: "",
+  //   cvc: "",
+  //   issuer: "",
+  //   focused: "",
+  //   formData: null,
+  // });
 
   return (
     <Row className="w-100 d-flex justify-content-center align-items-center">
