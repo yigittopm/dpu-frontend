@@ -62,7 +62,7 @@ function AddressTable({ addresses = [], accessToken = "" }) {
           </Row>
         </div>
       ) : (
-        <h2>Hiç siparişiniz yok..</h2>
+        <h2>Hiç adresiniz yok..</h2>
       )}
     </>
   );

@@ -40,17 +40,17 @@ function OrderTable({ orders = [] }) {
                         products.map(
                           (i, index) =>
                             // eslint-disable-next-line jsx-a11y/img-redundant-alt
-
                             index < 3 && (
                               <img
                                 alt="image_default"
                                 style={{
-                                  maxHeight: "30px",
+                                  maxHeight: "40px",
                                   maxWidth: "auto",
                                   borderRadius: "5px",
                                   margin: "1px",
                                 }}
                                 src={
+                                  i.productDetail.images[0] ||
                                   "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
                                 }
                               />
