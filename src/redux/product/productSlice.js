@@ -11,22 +11,23 @@ export const ProductSlice = createSlice({
     search: "",
     products: [],
     shopCart: [],
+    favorites: [],
     currentProduct: {},
     success: false,
     message: "",
   },
   reducers: {
-    successIsSearch: (state,action) => {
+    successIsSearch: (state, action) => {
       return {
         ...state,
-        isSearch: action.payload
-      }
+        isSearch: action.payload,
+      };
     },
-    successSearch: (state,action) => {
+    successSearch: (state, action) => {
       return {
         ...state,
-        search: action.payload
-      }
+        search: action.payload,
+      };
     },
     successProducts: (state, action) => {
       const data = action.payload;
@@ -85,6 +86,26 @@ export const ProductSlice = createSlice({
       );
       localStorage.setItem("shopCart", JSON.stringify(newShopCart));
     },
+    successAddFavorites: (state, action) => {
+      const { productDetail } = action.payload;
+      const isExists = current(state.favorites).findIndex(
+        (e) => e.productDetail._id === productDetail._id
+      );
+
+      if (isExists > -1) {
+        //
+      } else {
+        state.favorites.push({ productDetail });
+        localStorage.setItem("favorites", JSON.stringify(state.favorites));
+      }
+    },
+    successRemoveFromFavorites: (state, action) => {
+      const id = action.payload;
+      const newShopCart = current(state.shopCart).filter(
+        (item) => item.productDetail._id !== id
+      );
+      localStorage.setItem("favorites", JSON.stringify(newShopCart));
+    },
     failed: (state, action) => {},
   },
 });
@@ -95,8 +116,10 @@ export const {
   successProducts,
   successProductsByCategory,
   successCurrentProduct,
+  successAddFavorites,
   successAddShopCart,
   successRemoveFromShopCart,
+  successRemoveFromFavorites,
   failed,
 } = ProductSlice.actions;
 
@@ -177,6 +200,18 @@ export const addProductToShopCart = (data) => {
 export const removeProductFromShopCart = (data) => {
   return async (dispatch) => {
     dispatch(successRemoveFromShopCart(data));
+  };
+};
+
+export const addProductToFavorites = (data) => {
+  return async (dispatch) => {
+    dispatch(successAddFavorites(data));
+  };
+};
+
+export const removeProductFromFavorites = (data) => {
+  return async (dispatch) => {
+    dispatch(successRemoveFromFavorites(data));
   };
 };
 

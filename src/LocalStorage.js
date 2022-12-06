@@ -24,6 +24,14 @@ export const ShopCartLocalStorage = () => {
     : shopCart;
 };
 
+export const FavoritesLocalStorage = () => {
+  const { favorites } = useSelector((state) => state.product);
+
+  return localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites"))
+    : favorites;
+};
+
 export const AddressesLocalStorage = () => {
   const { addresses } = useSelector((state) => state.user);
   return localStorage.getItem("addresses")

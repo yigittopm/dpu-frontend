@@ -1,14 +1,57 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
 import { Card, Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthLocalStorage } from "../../LocalStorage";
+import { addProductToFavorites } from "../../redux/product/productSlice";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
-function ProductSchema({ product, size="" }) {
+function ProductSchema({ product, size = "" }) {
+  const { isAuth } = AuthLocalStorage();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const discount = (parseFloat(product.price) * 110) / 100;
   const result = discount.toFixed(3);
+  const [isFavorites, setIsFavorites] = useState(false);
+
+  const createToasy = () => {
+    toast.success("Added to favorites", {
+      autoClose: "1sn",
+      position: "bottom-right",
+    });
+  };
+
   return (
-    <Card className="p-2 border-light" key={product._id} >{/*style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}}*/}
+    <Card className="p-2 border-light" key={product._id}>
+      {/*style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}}*/}
       <Col>
+        <button
+          className="btn"
+          style={{
+            position: "absolute",
+            top: "15px",
+            right: "15px",
+          }}
+          onClick={() => {
+            if (isAuth) {
+              createToasy();
+              dispatch(addProductToFavorites({ productDetail: product }));
+              setIsFavorites(!isFavorites);
+            } else {
+              history.push("/login");
+            }
+          }}
+        >
+          <i
+            className="fa-solid fa-heart"
+            style={{
+              color: `${isFavorites ? "red" : "grey"}`,
+              fontSize: "30px",
+            }}
+          ></i>
+        </button>
         <img
           src={product?.images[0]}
           className="card-img img-thumbnail justify-content-center"

@@ -7,6 +7,7 @@ import Orders from "../../../Pages/Orders";
 import NotFound from "../../../Pages/NotFound";
 import CreditCardInfo from "../../../Pages/ShopCart/CreditCardInfo";
 import Addresses from "../../../Pages/Addresses";
+import Favorites from "../../../Pages/Favorites";
 
 function UserRoute() {
   return (
@@ -17,6 +18,7 @@ function UserRoute() {
         <Route path="/profile/orders" component={Orders} />
         <Route path="/profile/credit-card" component={CreditCardInfo} />
         <Route path="/profile/addresses" component={Addresses} />
+        <Route path="/profile/favorites" component={Favorites} />
         <Route path="*" component={NotFound} />
       </Switch>
     </>
