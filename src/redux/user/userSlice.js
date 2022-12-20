@@ -46,6 +46,9 @@ export const UserSlice = createSlice({
         message: "Success",
       };
     },
+    successSendEmail: () => {
+      toast.success("Görüşleriniz başarıyla iletilmiştir.");
+    },
     successCreateOrder: (state, action) => {
       return {
         ...state,
@@ -70,6 +73,7 @@ export const {
   successCreateAddress,
   successGetAllOrders,
   successCreateOrder,
+  successSendEmail,
   failed,
 } = UserSlice.actions;
 
@@ -152,6 +156,24 @@ export const createOrder = (data, token) => {
             localStorage.removeItem("shopCart");
           } else {
             dispatch(failed(res.data));
+          }
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const sendEmail = (data, token) => {
+  return async (dispatch) => {
+    try {
+      await axios
+        .post(`${DEV_BASE}/email`, data, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          if (res.data.success) {
+            dispatch(successSendEmail());
           }
         });
     } catch (e) {

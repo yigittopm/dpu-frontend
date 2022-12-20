@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 function CreditCardInfo({ products }) {
   const dispatch = useDispatch();
   const shopCart = ShopCartLocalStorage();
-  const { accessToken } = AuthLocalStorage();
+  const { accessToken, email } = AuthLocalStorage();
   const address = JSON.parse(localStorage.getItem("selectedAddress"));
   const history = useHistory();
   // const [creditCard, setCreditCard] = useState({
@@ -100,7 +100,14 @@ function CreditCardInfo({ products }) {
               <button
                 onClick={() => {
                   dispatch(
-                    createOrder({ products: shopCart, address }, accessToken)
+                    createOrder(
+                      {
+                        products: shopCart,
+                        address,
+                        email,
+                      },
+                      accessToken
+                    )
                   );
                   toast.success("Siparişiniz alındı.");
                   history.push("/profile/orders");

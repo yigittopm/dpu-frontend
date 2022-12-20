@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { sendEmail } from "../../redux/user/userSlice";
+import { AuthLocalStorage } from "../../LocalStorage";
 
 function ContactMe() {
-  const [email, setEmail] = useState("");
-
-  console.log(email);
+  const dispatch = useDispatch();
+  const { accessToken, email } = AuthLocalStorage();
+  const [message, setMessage] = useState("");
 
   return (
     <section className="">
@@ -18,10 +21,10 @@ function ContactMe() {
           <div className="col-md-5 col-12">
             <div className="form-outline form-white mb-4">
               <input
-                type="email"
+                type="text"
                 id="form5Example21"
                 className="form-control"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setMessage(e.target.value)}
               />
               <label className="form-label" htmlFor="form5Example21">
                 Email: yigittopm@hotmail.com
@@ -29,7 +32,14 @@ function ContactMe() {
             </div>
           </div>
           <div className="col-auto">
-            <button type="submit" className="btn btn-outline-light mb-4">
+            <button
+              type="submit"
+              className="btn btn-outline-light mb-4"
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(sendEmail({ message, email }, accessToken));
+              }}
+            >
               Gönder
             </button>
           </div>
