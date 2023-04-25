@@ -1,4 +1,4 @@
-Live: https://dpu-ecommerce.netlify.app/
+<p style="text-align:center;"> Live: https://dpu-ecommerce.netlify.app/ </p>
 
 <img alt="app_home" src="./src/assets/readme/home.png"/>
 
